@@ -16,6 +16,11 @@ export default [
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
+      env: {
+        browser: true, 
+        node: true,    
+        es2020: true,  
+      },
     },
     settings: { react: { version: '18.3' } },
     plugins: {
