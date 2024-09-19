@@ -6,13 +6,8 @@ import NavBar from '../Shared/Header/NavBar';
 const Root = () => {
     return (
         <div>
-<<<<<<< HEAD
-            <NavBar></NavBar>
-            <Outlet></Outlet>
-=======
             <Navbar></Navbar>
             <Outlet></Outlet>         
->>>>>>> 010b81ab40b1a507462edf498f6e33a076727ca7
         </div>
     );
 };
