@@ -1,9 +1,11 @@
 import React from 'react';
+import Form from '../../Components/Form/Form';
+
 
 const Home = () => {
     return (
         <div>
-            Home
+            <Form></Form>
         </div>
     );
 };
