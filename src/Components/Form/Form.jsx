@@ -1,14 +1,14 @@
 import React from 'react';
 import { BsBuildings } from 'react-icons/bs';
 import { CiMail } from 'react-icons/ci';
-import { FaGoogle, FaHashtag, FaTwitter, FaVoicemail } from 'react-icons/fa';
+import { FaGoogle } from 'react-icons/fa';
 import { GoHash } from 'react-icons/go';
 import { RiTwitterXLine } from 'react-icons/ri';
 import { TfiWorld } from 'react-icons/tfi';
 
 const Form = () => {
     return (
-        <div className='flex flex-col lg:flex-row  lg:justify-evenly lg:h-[85vh] bg-[#6A9C89]'>
+        <div className='flex flex-col lg:pb-0 pb-10 lg:flex-row  lg:justify-evenly lg:h-[800px] bg-[#6A9C89]'>
             <div className=' my-auto space-y-2 md:space-y-5 text-center lg:text-start lg:pt-0 pt-5'>
                 <h2 className='text-2xl md:text-3xl lg:text-5xl  text-yellow-500 font-semibold'>Comprehensive</h2>
                 <h1 className='text-5xl md:text-7xl lg:text-9xl font-extrabold'>Accounting</h1>

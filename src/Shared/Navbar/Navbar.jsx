@@ -12,7 +12,7 @@ const Navbar = () => {
         </div>
     </>
     return (
-        <div className='shadow-lg h-24'>
+        <div className='shadow-lg  md:h-24'>
             <div className="navbar  bg-base-100 pt-4 container mx-auto font-poppins">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -36,7 +36,7 @@ const Navbar = () => {
                             {link}
                         </ul>
                     </div>
-                    <Link className="md:text-4xl lg:text-5xl text-xl font-extrabold flex items-center gap-2 text-[#6A9C89]"><RiBarChart2Fill className='text-3xl md:text-5xl lg:text-6xl text-[#16423C]' /> ExpenseEdge</Link>
+                    <Link className="md:text-4xl lg:text-5xl text-2xl font-extrabold flex items-center gap-2 text-[#6A9C89]"><RiBarChart2Fill className='text-3xl md:text-5xl lg:text-6xl text-[#16423C]' /> ExpenseEdge</Link>
 
                 </div>
 
