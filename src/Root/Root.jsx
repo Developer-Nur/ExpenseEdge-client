@@ -6,7 +6,7 @@ import Navbar from '../Shared/Navbar/Navbar';
 const Root = () => {
     return (
         <div>
-            <NavBar></NavBar>
+            <Navbar></Navbar>
             <Outlet></Outlet>
         </div>
     );

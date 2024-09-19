@@ -3,7 +3,7 @@ import React from 'react';
 const Singup = () => {
     return (
         <div>
-            Sing up page
+            Sing up page for Nahiyan vai
         </div>
     );
 };

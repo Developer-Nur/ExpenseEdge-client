@@ -48,7 +48,11 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <a className="md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold">Sign Up Now</a>
+
+                    {/*  */}
+                    <Link to="/Login"><a className="md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold">Login</a></Link>
+                    
+                    
                 </div>
             </div>
         </div>
