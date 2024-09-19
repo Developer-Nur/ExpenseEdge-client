@@ -1,10 +1,12 @@
 import React from 'react';
+import Form from '../../Components/Form/Form';
 import Reports from '../../Components/Reports/Reports';
+
 
 const Home = () => {
     return (
         <div>
-            Home
+            <Form></Form>
             <Reports></Reports>
         </div>
     );

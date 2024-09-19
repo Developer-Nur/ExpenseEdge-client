@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import NavBar from "../Shared/Header/NavBar"
+import Navbar from '../Shared/Navbar/Navbar';
 
 
 const Root = () => {
