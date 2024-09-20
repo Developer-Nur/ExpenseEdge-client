@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
-import LoginAnimation from "/loginAnimation.json"
+import LoginAnimation from "../../../public/loginAnimation.json"
 import '../../index.css'
 import Lottie from 'lottie-react';
 
