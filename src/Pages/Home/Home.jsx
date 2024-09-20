@@ -1,15 +1,19 @@
 import React from 'react';
+import Form from '../../Components/Form/Form';
 import Reports from '../../Components/Reports/Reports';
-// import Footer from '../../shared/Footer/Footer';
 import Testimonial from '../../Components/Testimonial/Testimonial';
+import Partner from '../../Components/Partners/Partners';
+import Features from '../../Components/Features/Features';
+
 
 const Home = () => {
     return (
         <div>
-            Home
+            <Form></Form>
             <Reports></Reports>
             <Testimonial></Testimonial>
-            {/* <Footer></Footer> */}
+            <Partner></Partner>
+            <Features></Features>
         </div>
     );
 };

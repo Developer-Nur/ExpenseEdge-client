@@ -26,6 +26,18 @@ h1,h2,h3,h4,h5{
     font-family: "Poppins", sans-serif;  
   }
 
-banner{
+.section-bg{
     background-color: var(--section-bg);
+}
+.text-color{
+  color: var(--text-color);
+}
+
+
+
+
+#NavItem a.active {
+  background-color: unset;
+  color: #6A9C89;
+  font-weight: 800;
 }

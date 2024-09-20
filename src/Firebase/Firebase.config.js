@@ -5,18 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-
-  apiKey: import.meta.env.VITE_APIKEY,
-  authDomain: import.meta.env.VITE_AUTHDOMAIN,
-  projectId: import.meta.env.VITE_PROJECTID,
-  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
-  appId: import.meta.env.VITE_APPID,
+  apiKey: "AIzaSyDekMrMWpBIx73eQ1rr9SgxGaTRJDVkeac",
+  authDomain: "expense-edge-52415.firebaseapp.com",
+  projectId: "expense-edge-52415",
+  storageBucket: "expense-edge-52415.appspot.com",
+  messagingSenderId: "992736495301",
+  appId: "1:992736495301:web:46f431497686c73aaad2ac"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-
-export default auth
-
