@@ -2,8 +2,8 @@ import React from 'react';
 
 const Singup = () => {
     return (
-        <div>
-            Sing up page for Nahiyan vai
+        <div className='w-3/5 mx-auto text-center mt-20 font-semibold'>
+            Sing up page - under construction
         </div>
     );
 };
