@@ -15,7 +15,7 @@ const Reports = () => {
   }, []);
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
+    <div className="p-10 pb-8 bg-gray-100">
       <h1 className="text-3xl font-semibold text-center mb-8 text-gray-800">Financial Overview</h1>
 
 
