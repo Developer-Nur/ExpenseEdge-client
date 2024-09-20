@@ -1,0 +1,21 @@
+[
+    {
+      "name": "John Doe",
+      "role": "CEO at ExampleCorp",
+      "feedback": "This service is outstanding! It helped us improve our processes and the team was highly supportive throughout.",
+      "image": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      "name": "Jane Smith",
+      "role": "Product Manager at XYZ Inc.",
+      "feedback": "I’m so happy with the end result! The team exceeded expectations and delivered the project on time.",
+      "image": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      "name": "Michael Johnson",
+      "role": "CTO at TechnoSolutions",
+      "feedback": "Highly recommend! The attention to detail and quality of work are second to none.",
+      "image": "https://randomuser.me/api/portraits/men/75.jpg"
+    }
+  ]
+  
