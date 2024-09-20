@@ -8,12 +8,12 @@ import Lottie from 'lottie-react';
 const Login = () => {
     return (
         <>
-            <div className="section-bg p-16">
+            <div className="section-bg p-10 lg:p-16">
 
-                <div className='mt-10  flex justify-around items-center'>
+                <div className='mt-10  lg:flex justify-around items-center'>
 
                     {/* Login Form */}
-                    <div className='bg-white rounded-lg w-2/5'>
+                    <div className='bg-white rounded-lg  w-full lg:w-2/5'>
                         <from className=" rounded-lg p-7">
                             <form className="card-body  rounded-lg">
                                 <div className="form-control">
@@ -50,7 +50,7 @@ const Login = () => {
                                     <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg "> <FcGoogle /> Login with Google</button>
 
                                     {/* Login by twitter */}
-                                    <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg "> <FaXTwitter /> Login with Twitter</button>
+                                    <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg m-0"> <FaXTwitter /> Login with Twitter</button>
                                 </section>
                             </div>
                         </from>
@@ -60,9 +60,9 @@ const Login = () => {
 
                     {/* animation */}
                     <div>
-                        <h2 className='text-2xl mb-3 text-center'>Secure Access to Your Revenue Dashboard</h2>
+                        <h2 className='text-2xl mb-3 text-center mt-10'>Secure Access to Your Revenue Dashboard</h2>
                         <p className='text-color text-center'>Log in to track, manage, and grow your business earnings.</p>
-                        <div className="w-[300px] mx-auto">
+                        <div className="max-w-[250px] mx-auto">
                             <Lottie animationData={LoginAnimation} />
                         </div>
                     </div>
