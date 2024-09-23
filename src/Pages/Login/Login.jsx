@@ -4,8 +4,39 @@ import { FaXTwitter } from "react-icons/fa6";
 import LoginAnimation from "../../../public/loginAnimation.json"
 import '../../index.css'
 import Lottie from 'lottie-react';
+import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import { AuthInfo } from '../../Provider/Authprovider';
 
 const Login = () => {
+
+    const { singinUser, googleSingin, setLoader } = useContext(AuthInfo)
+
+    const loginWithGoogle = () => {
+        googleSingin()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: error.message,
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+                setLoader(false)
+            })
+        // navigate(from, { replace: true });
+    }
+
+
     return (
         <>
             <div className="section-bg p-10 lg:p-16">
@@ -14,46 +45,45 @@ const Login = () => {
 
                     {/* Login Form */}
                     <div className='bg-white rounded-lg  w-full lg:w-2/5'>
-                        <from className=" rounded-lg p-7">
-                            <form className="card-body  rounded-lg">
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Email</span>
-                                    </label>
-                                    <input name="email" type="email" placeholder="email" className="input input-bordered" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text ">Password</span>
-                                    </label>
-                                    <input name="password" type="password" placeholder="password" className="input input-bordered" required />
-                                </div>
-
-                                <div className="form-control mt-3">
-                                    <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66]'>Login</button>
-                                </div>
-
-                                {/* redirect to register */}
-                            </form>
-                            <p className="pl-8 accent-color text-[12px]">Do not have an account?
-                                <span className="underline hover:text-[#6A9C89] ">
-                                    <Link to="/Singup"> Register</Link>
-                                </span>
-                            </p>
-
-                            {/* social login options */}
-                            <div className="text-center">
-                                <div className="divider">OR</div>
-                                <section className="space-x-6 ">
-
-                                    {/* Login by google */}
-                                    <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg "> <FcGoogle /> Login with Google</button>
-
-                                    {/* Login by twitter */}
-                                    <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg m-0"> <FaXTwitter /> Login with Twitter</button>
-                                </section>
+                        <form className="card-body  rounded-lg p-7">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input name="email" type="email" placeholder="email" className="input input-bordered" required />
                             </div>
-                        </from>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text ">Password</span>
+                                </label>
+                                <input name="password" type="password" placeholder="password" className="input input-bordered" required />
+                            </div>
+
+                            <div className="form-control mt-3">
+                                <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66]'>Login</button>
+                            </div>
+
+                            {/* redirect to register */}
+                        </form>
+                        <p className="pl-8 accent-color text-[12px]">Do not have an account?
+                            <span className="underline hover:text-[#6A9C89] ">
+                                <Link to="/Singup"> Register</Link>
+                            </span>
+                        </p>
+
+                        {/* social login options */}
+                        <div className="text-center ">
+                            <div className="divider">OR</div>
+                            <section className="space-x-6 pb-7">
+
+                                {/* Login by google */}
+                                <button onClick={loginWithGoogle} className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg "> <FcGoogle /> Login with Google</button>
+
+                                {/* Login by twitter */}
+                                <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg m-0"> <FaXTwitter /> Login with Twitter</button>
+                            </section>
+                        </div>
+
 
 
                     </div>
