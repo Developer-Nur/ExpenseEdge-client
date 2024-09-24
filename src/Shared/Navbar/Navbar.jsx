@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthInfo } from '../../Provider/Authprovider';
+
 const Navbar = () => {
-    const user = false
+
+    const {user} = useContext(AuthInfo)
+
+    console.log("the user is", user);
+
+    // const user = false
     const link = <>
         <div className="flex lg:gap-10 gap-1 flex-col text-xl text-[15px] lg:flex-row" id="NavItem">
             <li><NavLink>Home</NavLink></li>
@@ -12,6 +19,9 @@ const Navbar = () => {
         </div>
     </>
     return (
+
+
+
         <div className='shadow-lg  md:h-24'>
             <div className="navbar  bg-base-100 pt-4 container mx-auto font-poppins">
                 <div className="navbar-start">
@@ -50,9 +60,10 @@ const Navbar = () => {
 
 
                     {/*  */}
-                    <Link to="/Login"><a className="md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold">Login</a></Link>
-                    
-                    
+
+                    <Link to="/Login" className="md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Login </Link>
+
+
                 </div>
             </div>
         </div>
