@@ -14,11 +14,11 @@ const DashboardLayout = () => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="space-y-3 lg:space-y-5 text-xl font-semibold p-9 md:w-80 min-h-full bg-[#16423C] text-white">
-                    {/* all route add hare */}
-                    
-                    <li><Link className='hover:bg-[#6A9C89] flex gap-2 items-center p-2'  to='/'><FaHome /> Home</Link> </li>
-                   
-                    
+                    {/* added all route  hare */}
+
+                    <li><Link className='hover:bg-[#6A9C89] flex gap-2 items-center p-2' to='/'><FaHome /> Home</Link> </li>
+
+
                 </ul>
             </div>
         </div>
