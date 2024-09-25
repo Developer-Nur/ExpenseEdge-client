@@ -7,7 +7,7 @@ const Navbar = () => {
     const { user, loader } = useContext(AuthInfo)
     // const { theUser, setTheUser } = useState()
 
-    console.log("the user is", user);
+    console.log("the user is", user, "and loading status", loader);
 
     // const theUser = setTheUser(user)
 
@@ -22,8 +22,11 @@ const Navbar = () => {
     </>
 
     if (loader) {
-        <p>Loading....</p>
+        return <p>Loading....</p>
     }
+
+
+    
     return (
 
 
@@ -69,7 +72,10 @@ const Navbar = () => {
 
                     {
                         user ?
-                            <Link to="/Login" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Dashboard </Link>
+                            <Link to="/dashboard" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Dashboard
+
+                            </Link>
+
                             :
                             <Link to="/Login" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Login </Link>
 

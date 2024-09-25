@@ -8,7 +8,57 @@ import axios from 'axios';
 const Singup = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, logOut, googleSingin, setLoader } = useContext(AuthInfo)
-    const onSubmit = (data) => console.log(data);
+
+
+
+    const onSubmit = (data) => {
+
+        const companyInfo = {
+            password: data.password,
+            name: data.name,
+            mobileNumber: data.mobileNumber,
+            location: data.location,
+            email: data.email,
+            companyType: data.companyType,
+            role: "admin"
+        }
+
+        // console.log("register data is", companyInfo);
+
+        // creating a user for company registration and adding the data to the database company collection.
+        createUser(companyInfo.email, companyInfo.password)
+            .then(() => {
+
+
+                // console.log("user data is", userInfo);
+                axios.post('/create-user', companyInfo)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "You Successfully Registered your company",
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+                        reset()
+                        navigation('/')
+                    }
+                })
+            })
+            .catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: error,
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                setLoader(false)
+            })
+    };
+
+
 
     // handle creating a user
     const handleRegisterUser = e => {
@@ -20,6 +70,7 @@ const Singup = () => {
 
         // console.log("user form data is ",email, password );
 
+        // creating a user and sending the user data to the database user collection
         createUser(userEmail, userPassword)
             .then(() => {
 
@@ -60,7 +111,7 @@ const Singup = () => {
 
     return (
         <>
-            <div className='py-20 md:py-28 text-center '>
+            <div className='py-20 md:py-28 text-center singup-bg'>
                 <h2 className='text-2xl md:text-3xl lg:text-4xl '>You can register your company or <br /> as a general user</h2>
 
                 {/* registration separator */}
@@ -80,17 +131,55 @@ const Singup = () => {
                             <h3 className="font-bold text-lg">Register your Company </h3>
 
                             {/* company registration form*/}
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                {/* register your input into the hook by invoking the "register" function */}
-                                <input defaultValue="test" {...register("example")} />
 
-                                {/* include validation with required or other standard HTML validation rules */}
-                                <input {...register("exampleRequired", { required: true })} />
-                                {/* errors will return when field validation fails  */}
-                                {errors.exampleRequired && <span>This field is required</span>}
+                            <form onSubmit={handleSubmit(onSubmit)} className="card-body rounded-lg p-2  w-full text-left">
+                                <div className="form-control">
+                                    <label className="block mb-2 label">Company Name</label>
+                                    <input placeholder='Company Name' className="input input-bordered w-full" type="text" {...register('name', { required: 'Name is required' })} />
+                                    {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+                                </div>
 
-                                <input type="submit" />
+                                <div className="form-control">
+                                    <label className="label block mb-2">Company Type</label>
+                                    <select className="input input-bordered w-full" {...register('companyType', { required: 'Company Type is required' })}>
+                                        <option value="">Select...</option>
+                                        <option value="Non Profit">Non Profit</option>
+                                        <option value="Service Base">Service Base</option>
+                                        <option value="E-commerce Store">E-commerce Store</option>
+                                        <option value="E-Learning Platform">E-Learning Platform</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    {errors.companyType && <p className="text-red-500">{errors.companyType.message}</p>}
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label block mb-2">Location</label>
+                                    <input placeholder='where your company located at?' className="input input-bordered w-full" type="text" {...register('location')} />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label block mb-2">Email</label>
+                                    <input placeholder='email' className="input input-bordered w-full" type="email" {...register('email', { required: 'Email is required' })} />
+                                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label block mb-2">Mobile Number</label>
+                                    <input placeholder='Mobile Number' className="input input-bordered w-full" type="number" {...register('mobileNumber', { required: 'Mobile Number is required' })} />
+                                    {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber.message}</p>}
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label block mb-2">Password</label>
+                                    <input placeholder='*******' className="input input-bordered w-full" type="password" {...register('password', { required: 'Password is required' })} />
+                                    {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+                                </div>
+
+                                <div className="mt-4 p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66] text-center">
+                                    <button className="button" type="submit">Register</button>
+                                </div>
                             </form>
+
                         </div>
                     </dialog>
 
@@ -104,7 +193,7 @@ const Singup = () => {
                             <h3 className="font-bold text-lg">Register as user</h3>
 
                             {/* user register form */}
-                            <form onSubmit={handleRegisterUser} className="card-body  rounded-lg p-7">
+                            <form onSubmit={handleRegisterUser} className="card-body  rounded-lg p-5">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Name</span>
@@ -145,3 +234,12 @@ const Singup = () => {
     );
 };
 export default Singup;
+
+
+
+
+
+
+
+
+
