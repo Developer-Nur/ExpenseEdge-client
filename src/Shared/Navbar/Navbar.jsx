@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthInfo } from '../../Provider/Authprovider';
 
 const Navbar = () => {
+    const { user, loader } = useContext(AuthInfo)
+    // const { theUser, setTheUser } = useState()
 
-    const {user} = useContext(AuthInfo)
+    // console.log("the user is", user, "and loading status", loader);
 
-    console.log("the user is", user);
+    // const theUser = setTheUser(user)
 
-    // const user = false
+
     const link = <>
         <div className="flex lg:gap-10 gap-1 flex-col text-xl text-[15px] lg:flex-row" id="NavItem">
             <li><NavLink>Home</NavLink></li>
@@ -18,6 +20,13 @@ const Navbar = () => {
             <li><NavLink>Reports</NavLink></li>
         </div>
     </>
+
+    if (loader) {
+        return <p>Loading....</p>
+    }
+
+
+    
     return (
 
 
@@ -61,7 +70,17 @@ const Navbar = () => {
 
                     {/*  */}
 
-                    <Link to="/Login" className="md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Login </Link>
+                    {
+                        user ?
+                            <Link to="/dashboard" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Dashboard
+
+                            </Link>
+
+                            :
+                            <Link to="/Login" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Login </Link>
+
+                    }
+
 
 
                 </div>

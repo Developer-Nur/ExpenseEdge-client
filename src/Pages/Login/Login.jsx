@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
 import LoginAnimation from "../../../public/loginAnimation.json"
@@ -12,6 +12,45 @@ const Login = () => {
 
     const { singinUser, googleSingin, setLoader } = useContext(AuthInfo)
 
+    const navigate = useNavigate();
+
+    // handle login user
+    const handleUSerLogin = e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // console.log("user login info from the loging page", email, "and pass", password);
+
+        singinUser(email, password)
+            .then(res => {
+                const user = res.user;
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                // setLoader(false)
+                navigate('/dashboard')
+            })
+            .catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: "Email or password did not match",
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            })
+
+
+    };
+
+    // handle social login
     const loginWithGoogle = () => {
         googleSingin()
             .then(() => {
@@ -22,6 +61,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                // setLoader(false)
             })
             .catch(error => {
                 Swal.fire({
@@ -45,7 +85,7 @@ const Login = () => {
 
                     {/* Login Form */}
                     <div className='bg-white rounded-lg  w-full lg:w-2/5'>
-                        <form className="card-body  rounded-lg p-7">
+                        <form onSubmit={handleUSerLogin} className="card-body  rounded-lg p-7">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -103,3 +143,4 @@ const Login = () => {
 };
 
 export default Login;
+

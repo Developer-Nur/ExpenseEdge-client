@@ -6,6 +6,8 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Singup from "../Pages/Singup/Singup";
 import DashboardLayout from "../Root/DashboardLayout";
+import GeneralUser from "../Pages/Dashboard/GeneralUser/GeneralUser";
+import CompanyDashboard from "../Pages/Dashboard/CompanyDashboard/CompanyDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     children: [
+      {
+        path: "GeneralUser",
+        element: <GeneralUser></GeneralUser>
+      },
+      {
+        path: "CompanyDashboard",
+        element: <CompanyDashboard></CompanyDashboard>
+      },
     ]
   }
 ]);

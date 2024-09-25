@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createContext } from 'react';
 import { auth } from "../Firebase/Firebase.config"
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 
 export const AuthInfo = createContext();
@@ -28,16 +28,14 @@ const Authprovider = ({ children }) => {
     // handle social sing in
     const googleSingin = () => {
         setLoader(true)
-        return signInWithPopup(auth, googleProvider )
+        return signInWithPopup(auth, googleProvider)
     }
 
 
-    const variables = {
-        createUser,
-        user,
-        loader,
-        singinUser,
-        googleSingin
+    // sing out 
+    const logOut = () => {
+        setLoader(true)
+        return signOut(auth)
     }
 
     // USER observer
@@ -50,6 +48,16 @@ const Authprovider = ({ children }) => {
             return unsubscribe()
         }
     }, []);
+
+
+    const variables = {
+        createUser,
+        user,
+        loader,
+        singinUser,
+        googleSingin,
+        logOut,
+    }
 
     return (
         <AuthInfo.Provider value={variables}>
