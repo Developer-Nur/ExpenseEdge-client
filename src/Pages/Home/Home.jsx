@@ -4,6 +4,7 @@ import Testimonial from '../../Components/Testimonial/Testimonial';
 import Partner from '../../Components/Partners/Partners';
 import Features from '../../Components/Features/Features';
 import Banner from '../../Components/Banner/Banner';
+import ReportPage from '../ReportPage/ReportPage';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <Testimonial></Testimonial>
             <Partner></Partner>
             <Features></Features>
+            <ReportPage></ReportPage>
         </div>
     );
 };
