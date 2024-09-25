@@ -7,7 +7,7 @@ const Navbar = () => {
     const { user, loader } = useContext(AuthInfo)
     // const { theUser, setTheUser } = useState()
 
-    console.log("the user is", user, "and loading status", loader);
+    // console.log("the user is", user, "and loading status", loader);
 
     // const theUser = setTheUser(user)
 

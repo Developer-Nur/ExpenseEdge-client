@@ -3,13 +3,14 @@ import '../../index.css';
 import { useForm } from "react-hook-form"
 import { AuthInfo } from '../../Provider/Authprovider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Singup = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, logOut, googleSingin, setLoader } = useContext(AuthInfo)
 
-
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
 
@@ -31,20 +32,22 @@ const Singup = () => {
 
 
                 // console.log("user data is", userInfo);
-                axios.post('/create-user', companyInfo)
-                .then(res => {
-                    if (res.data.insertedId) {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "You Successfully Registered your company",
-                            showConfirmButton: false,
-                            timer: 5000
-                        });
-                        reset()
-                        navigation('/')
-                    }
-                })
+                axios.post('http://localhost:5000/companies', companyInfo)
+                    .then(res => {
+
+                        // console.log(res.data);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "You Successfully Registered your company",
+                                showConfirmButton: false,
+                                timer: 5000
+                            });
+                            reset()
+                            navigate('/dashboard')
+                        }
+                    })
             })
             .catch(error => {
                 Swal.fire({
@@ -82,7 +85,7 @@ const Singup = () => {
 
                 }
                 // console.log("user data is", userInfo);
-                axios.post('/create-user', userInfo)
+                axios.post('http://localhost:5000/users', userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             Swal.fire({
@@ -93,7 +96,7 @@ const Singup = () => {
                                 timer: 5000
                             });
                             reset()
-                            navigation('/')
+                            navigate('/dashboard')
                         }
                     })
             })
