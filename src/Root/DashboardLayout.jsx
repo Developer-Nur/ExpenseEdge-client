@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaAlignJustify, FaHome } from 'react-icons/fa';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import { AuthInfo } from '../Provider/Authprovider';
+
+
+
 const DashboardLayout = () => {
+
+    const { user, loader } = useContext(AuthInfo)
+
+
+    if(loader){
+        return <p>Loading....</p>
+    }
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -17,6 +29,27 @@ const DashboardLayout = () => {
                     {/* added all route  hare */}
 
                     <li><Link className='hover:bg-[#6A9C89] flex gap-2 items-center p-2' to='/'><FaHome /> Home</Link> </li>
+
+                    {
+
+                        user ?
+                            <>{/* dashboard menu for admin */}
+                                <nav className="mt-4 space-y-2">
+                                    <NavLink onClick={() => setNavMenu(false)} className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to='/dashboard/GeneralUser'>Add to a company</NavLink>
+                                </nav>
+                            </>
+                            :
+                            <>
+                                {/* dashboard menu for regular user */}
+                                <nav className="mt-4 space-y-2">
+
+                                    <NavLink onClick={() => setNavMenu(false)} className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to='/dashboard/CompanyDashboard'>  Company Dashboard</NavLink>
+
+
+                                </nav>
+                            </>
+                    }
+
 
 
                 </ul>

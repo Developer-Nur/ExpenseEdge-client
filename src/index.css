@@ -9,28 +9,43 @@
 @tailwind utilities;
 
 
-h1,h2,h3,h4,h5{
-    font-family: sans-serif, Arial;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: sans-serif, Arial;
+  color: var(--primary-color);
 }
 
 
 :root {
-    --primary-color: #16423C;
-    --secondary-color: #6A9C89;
-    --text-color: #838383;
-    --section-bg: #C4DAD2;
-    --Footer-bg: #E9EFEC;
-  }
+  --primary-color: #16423C;
+  --secondary-color: #6A9C89;
+  --text-color: #838383;
+  --section-bg: #C4DAD2;
+  --Footer-bg: #E9EFEC;
+}
 
 .font-poppins {
-    font-family: "Poppins", sans-serif;  
-  }
-
-.section-bg{
-    background-color: var(--section-bg);
+  font-family: "Poppins", sans-serif;
 }
-.text-color{
+
+.section-bg {
+  background-color: var(--section-bg);
+}
+
+.text-color {
   color: var(--text-color);
+}
+
+.singup-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.953), #ffffffda),
+    url(../public/favicon.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 
