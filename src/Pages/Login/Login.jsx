@@ -22,6 +22,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setLoader(false)
             })
             .catch(error => {
                 Swal.fire({

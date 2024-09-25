@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import '../../index.css';
 import { useForm } from "react-hook-form"
 import { AuthInfo } from '../../Provider/Authprovider';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Singup = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -12,21 +14,53 @@ const Singup = () => {
     const handleRegisterUser = e => {
         e.preventDefault(); // Prevent default form behavior
 
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+        const userEmail = e.target.email.value;
+        const userPassword = e.target.password.value;
+        const userName = e.target.name.value;
 
         // console.log("user form data is ",email, password );
 
-        createUser(email, password)
-        .then()
-        .catch()
+        createUser(userEmail, userPassword)
+            .then(() => {
 
+                // creating users to the database
+                const userInfo = {
+                    name: userName,
+                    email: userEmail,
+                    password: userPassword,
 
-    }
+                }
+                // console.log("user data is", userInfo);
+                axios.post('/create-user', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Registration Success",
+                                showConfirmButton: false,
+                                timer: 5000
+                            });
+                            reset()
+                            navigation('/')
+                        }
+                    })
+            })
+            .catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: error,
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                setLoader(false)
+            })
+    };
 
     return (
         <>
-            <div className='py-20 md:py-28 text-center singup-bg'>
+            <div className='py-20 md:py-28 text-center '>
                 <h2 className='text-2xl md:text-3xl lg:text-4xl '>You can register your company or <br /> as a general user</h2>
 
                 {/* registration separator */}
@@ -73,6 +107,13 @@ const Singup = () => {
                             <form onSubmit={handleRegisterUser} className="card-body  rounded-lg p-7">
                                 <div className="form-control">
                                     <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input name="name" type="text" placeholder="Your name" className="input input-bordered" required />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
                                     <input name="email" type="email" placeholder="email" className="input input-bordered" required />
@@ -99,9 +140,6 @@ const Singup = () => {
                         </div>
                     </dialog>
                 </div>
-
-
-
             </div>
         </>
     );
