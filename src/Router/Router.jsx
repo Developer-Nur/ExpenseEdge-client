@@ -8,6 +8,7 @@ import Singup from "../Pages/Singup/Singup";
 import DashboardLayout from "../Root/DashboardLayout";
 import GeneralUser from "../Pages/Dashboard/GeneralUser/GeneralUser";
 import CompanyDashboard from "../Pages/Dashboard/CompanyDashboard/CompanyDashboard";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: 'Singup',
         element: <Singup></Singup>
+      },
+      {
+        path: 'aboutUs',
+        element: <AboutUs></AboutUs>
       }
     ]
   },
