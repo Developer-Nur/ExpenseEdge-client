@@ -10,6 +10,7 @@ import GeneralUser from "../Pages/Dashboard/GeneralUser/GeneralUser";
 import CompanyDashboard from "../Pages/Dashboard/CompanyDashboard/CompanyDashboard";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AdvancedReports from "../Pages/Dashboard/AdvancedReports/AdvancedReports";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "CompanyDashboard",
         element: <CompanyDashboard></CompanyDashboard>
+      },
+      {
+        path: "AdvancedReports",
+        element: <AdvancedReports></AdvancedReports>
       },
     ]
   }
