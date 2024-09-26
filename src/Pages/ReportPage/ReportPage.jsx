@@ -7,6 +7,7 @@ import ExportButton from "../../Components/ExportButton/ExportButton";
 import {
     fetchProfitLossData,
 } from "../../utils/dataFetching/dataFetching";
+import axios from "axios";
 
 // Mock data
 const mockBalanceSheetData = [
@@ -32,6 +33,10 @@ const ReportPage = () => {
     const [cashFlowData, setCashFlowData] = useState(mockCashFlowData); // Using mock data
 
     useEffect(() => {
+        axios.get("http://localhost:5000/company-data")
+        .then(({data})=>{
+            console.log("data from server", data)
+        })
         fetchProfitLossData(filters).then((data) => setProfitLossData(data));
     }, [filters]);
 
