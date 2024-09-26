@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CompanyTable from '../CompanyTable/CompanyTable';
+import axios from 'axios';
 
 const CompanyDashboard = () => {
     const [formData, setFormData] = useState({
@@ -22,8 +23,8 @@ const CompanyDashboard = () => {
     };
 
     const handleSubmit = (e) => {
-        console.log("clicked form");
         e.preventDefault();
+        axios.post("http://localhost:5000/company-data", formData);
         console.log("Form submitted:", formData);
     };
 
