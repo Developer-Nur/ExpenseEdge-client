@@ -13,12 +13,12 @@ const Navbar = () => {
 
 
     const link = <>
-        <div className="flex lg:gap-10 gap-1 flex-col text-xl text-[15px] lg:flex-row" id="NavItem">
-            <li><NavLink>Home</NavLink></li>
-            <li><NavLink>Income</NavLink></li>
-            <li><NavLink>Expenses</NavLink></li>
-            <li><NavLink>Reports</NavLink></li>
-            <li><NavLink to="/aboutUs">About Us</NavLink></li>
+        <div className="flex text-[#16423C] font-extrabold lg:gap-6 gap-1 flex-col  lg:flex-row" id="NavItem">
+            <li ><NavLink to="/">Home</NavLink></li>
+            {/* <li ><NavLink to="/">Income</NavLink></li>
+            <li ><NavLink to="/">Expenses</NavLink></li>
+            <li ><NavLink to="/">Reports</NavLink></li> */}
+            <li ><NavLink to="/aboutUs">About Us</NavLink></li>
         </div>
     </>
 
@@ -27,7 +27,7 @@ const Navbar = () => {
     }
 
 
-    
+
     return (
 
 
@@ -50,6 +50,8 @@ const Navbar = () => {
                                     d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
                         </div>
+
+                        {/* menu for small device */}
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
@@ -62,8 +64,9 @@ const Navbar = () => {
 
                 <div className="navbar-end space-x-14">
 
+                    {/* menu for large device */}
                     <div className="navbar-center hidden lg:flex">
-                        <ul className="menu menu-horizontal px-1 text-xl gap-16">
+                        <ul className="menu menu-horizontal text-base px-1 gap-6">
                             {link}
                         </ul>
                     </div>
