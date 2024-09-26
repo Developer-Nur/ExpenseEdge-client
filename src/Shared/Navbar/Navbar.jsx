@@ -18,6 +18,7 @@ const Navbar = () => {
             <li><NavLink>Income</NavLink></li>
             <li><NavLink>Expenses</NavLink></li>
             <li><NavLink>Reports</NavLink></li>
+            <li><NavLink to="/aboutUs">About Us</NavLink></li>
         </div>
     </>
 

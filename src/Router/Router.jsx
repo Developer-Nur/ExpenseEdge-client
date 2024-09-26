@@ -8,12 +8,18 @@ import Singup from "../Pages/Singup/Singup";
 import DashboardLayout from "../Root/DashboardLayout";
 import GeneralUser from "../Pages/Dashboard/GeneralUser/GeneralUser";
 import CompanyDashboard from "../Pages/Dashboard/CompanyDashboard/CompanyDashboard";
+<<<<<<< HEAD
 import AdvancedReports from "../Pages/Dashboard/AdvancedReports/AdvancedReports";
+=======
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+>>>>>>> 37dc14366ef8f78f035e3ebdb4e4bf2ef6b8891d
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -26,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: 'Singup',
         element: <Singup></Singup>
+      },
+      {
+        path: 'aboutUs',
+        element: <AboutUs></AboutUs>
       }
     ]
   },
