@@ -10,10 +10,10 @@ const Banner = () => {
     return (
         <div className='flex flex-col lg:pb-0 pb-10 lg:flex-row  lg:justify-evenly lg:h-[800px] bg-[#6A9C89]'>
             <div className=' my-auto space-y-2 md:space-y-5 text-center lg:text-start lg:pt-0 pt-5'>
-                <h2 className='text-2xl md:text-3xl lg:text-5xl  text-yellow-500 font-semibold'>Comprehensive</h2>
-                <h1 className='text-5xl md:text-7xl lg:text-9xl font-extrabold'>Accounting</h1>
-                <h1 className='text-5xl md:text-7xl lg:text-9xl font-extrabold'>Platform</h1>
-                <h3 className='text-2xl md:text-3xl lg:text-5xl font-semibold'>for growing businesses</h3>
+                <h2 className='text-2xl md:text-3xl lg:text-4xl  font-semibold'>Comprehensive</h2>
+                <h1 className='text-5xl md:text-7xl lg:text-8xl font-extrabold'>Accounting</h1>
+                <h1 className='text-5xl md:text-7xl lg:text-8xl font-extrabold'>Platform</h1>
+                <h3 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>for growing businesses</h3>
             </div>
             {/* Form */}
             <div className="card mt-8 md:mt-10 lg:mt-auto mx-auto lg:mx-0 bg-base-100 md:p-5 w-full my-auto max-w-xs md:max-w-lg shrink-0 shadow-2xl">
@@ -40,12 +40,12 @@ const Banner = () => {
                         <input type="checkbox" className="" placeholder="Country" />
                         <h3>I agree to the Terms of Service and Privacy Policy.</h3>
                     </label>
-                    <button className='bg-yellow-500 hover:bg-yellow-600 p-3 font-bold text-xl'>START</button>
+                    <button className='hover:bg-[#246460] bg-[#1a4744] text-white p-3 font-bold text-xl'>START</button>
                     <div className='flex flex-col md:flex-row items-center gap-3'>
                         <h2 className='font-bold text-gray-500'>or sign in using</h2>
                         <div className='flex items-center gap-3'>
-                        <h2 className='border-2 text-xl items-center hover:bg-red-100 flex gap-1 py-1 rounded-md px-4'><FaGoogle className='text-xl text-red-600'/>Google</h2>
-                        <h2 className='border-2 text-xl items-center hover:bg-gray-100 flex gap-1 py-1 rounded-md px-4'><RiTwitterXLine className='text-xl'/>Twitter</h2>
+                        <h2 className='border-2 text-xl items-center hover:bg-red-100 flex gap-1 py-1 rounded-md px-4 shadow-md'><FaGoogle className='text-xl text-red-600'/>Google</h2>
+                        <h2 className='border-2 text-xl items-center hover:bg-gray-100 flex gap-1 py-1 rounded-md px-4 shadow-md'><RiTwitterXLine className='text-xl'/>Twitter</h2>
                         </div>
                         
                     </div>
