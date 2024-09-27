@@ -9,6 +9,7 @@ const GeneralUser = () => {
     const { user } = useContext(AuthInfo);
     const [pendingCompany, setPendingCompany] = useState(null); 
 
+    // fetch company data 
     const { data: companies = [], isLoading } = useQuery({
         queryKey: ['companies'],
         queryFn: async () => {
@@ -16,6 +17,8 @@ const GeneralUser = () => {
             return data;
         }
     });
+
+
 
     const handleJoin = async (company) => {
         Swal.fire({
