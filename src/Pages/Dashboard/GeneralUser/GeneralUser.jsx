@@ -13,7 +13,7 @@ const GeneralUser = () => {
     const { data: companies = [], isLoading } = useQuery({
         queryKey: ['companies'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/companies');
+            const { data } = await axios.get('https://expense-edge.vercel.app/companies');
             return data;
         }
     });
@@ -33,7 +33,7 @@ const GeneralUser = () => {
                 const useremail = user.email;
                 try {
                     setPendingCompany(company._id); 
-                    await axios.put(`http://localhost:5000/users/${useremail}`, {
+                    await axios.put(`https://expense-edge.vercel.app/users/${useremail}`, {
                         companyName: company.name,
                         righter: 'pending'
                     });
