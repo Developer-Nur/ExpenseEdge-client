@@ -114,7 +114,7 @@ const Singup = () => {
 
     return (
         <>
-            <div className='py-20 md:py-28 text-center singup-bg'>
+            <div className='py-20 md:py-28 text-center singup-bg min-h-screen'>
                 <h2 className='text-2xl md:text-3xl lg:text-4xl '>You can register your company or <br /> as a general user</h2>
 
                 {/* registration separator */}

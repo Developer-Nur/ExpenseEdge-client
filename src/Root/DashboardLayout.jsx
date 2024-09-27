@@ -73,12 +73,23 @@ const DashboardLayout = () => {
                     {/* conditional rendering */}
 
                     {userData && userData === 'user' ? (  // Check if the userData type is "user"
+
+                    // menu for general users
                         <nav className="mt-4 space-y-2">
                             <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to='/dashboard/GeneralUser'>Add to a company</NavLink>
+
+
                         </nav>
                     ) : userData && userData === 'company' ? (  // Check if the userData type is "company"
+
+                        // menu for company dashboard
                         <nav className="mt-4 space-y-2">
                             <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to='/dashboard/CompanyDashboard'>Company Dashboard</NavLink>
+                            
+                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to='/dashboard/AdvancedReports'>Advanced Financial Reports</NavLink>
+
+
+                            
                         </nav>
                     ) : null}
 
