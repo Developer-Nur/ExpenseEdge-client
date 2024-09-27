@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CompanyTable from '../CompanyTable/CompanyTable';
 import axios from 'axios';
 
@@ -14,6 +14,38 @@ const CompanyDashboard = () => {
         equity: ''
     });
 
+    const [loading, setLoading] = useState(true);
+
+    // Fetch company data from API on component mount
+    useEffect(() => {
+        axios.get("http://localhost:5000/companies")
+            .then(response => {
+                // Assuming the API returns an array of companies
+                const companies = response.data;
+
+                // Using the first company in the array as the default for the form
+                const firstCompany = companies[0]; // Adjust this logic based on which company you want to use
+
+                if (firstCompany) {
+                    setFormData({
+                        companyName: firstCompany.name || '',
+                        email: firstCompany.email || '',
+                        phoneNumber: firstCompany.mobileNumber || '',
+                        income: '', // Leave income blank for user input
+                        expense: '', // Leave expense blank for user input
+                        assets: '', // Leave assets blank for user input
+                        liabilities: '', // Leave liabilities blank for user input
+                        equity: '' // Leave equity blank for user input
+                    });
+                }
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching company data:", error);
+                setLoading(false);
+            });
+    }, []);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -24,9 +56,18 @@ const CompanyDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/company-data", formData);
-        console.log("Form submitted:", formData);
+        axios.post("http://localhost:5000/company-data", formData)
+            .then(response => {
+                console.log("Form submitted:", formData);
+            })
+            .catch(error => {
+                console.error("Error submitting form:", error);
+            });
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-8 rounded-3xl shadow-2xl max-w-5xl mx-auto mt-10">
@@ -154,8 +195,7 @@ const CompanyDashboard = () => {
                 </button>
             </form>
 
-
-            <CompanyTable></CompanyTable>
+            <CompanyTable />
         </div>
     );
 };
