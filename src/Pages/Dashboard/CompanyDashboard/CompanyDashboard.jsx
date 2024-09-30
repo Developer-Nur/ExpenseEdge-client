@@ -4,42 +4,32 @@ import axios from 'axios';
 import { AuthInfo } from '../../../Provider/Authprovider';
 
 const CompanyDashboard = () => {
-    const {user} = useContext(AuthInfo);
+    const { user } = useContext(AuthInfo);
 
     const [formData, setFormData] = useState({
-        companyName: '',
-        email: '',
-        phoneNumber: '',
         income: '',
         expense: '',
         assets: '',
         liabilities: '',
-        equity: ''
+        equity: '',
+        companyName: '',
+        phoneNumber: ''
     });
 
     const [loading, setLoading] = useState(true);
 
-    // Fetch company data from API on component mount
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`)
             .then(response => {
-                // Assuming the API returns an array of companies
                 const companies = response.data;
-
-                // Using the first company in the array as the default for the form
-                const firstCompany = companies[0]; // Adjust this logic based on which company you want to use
+                const firstCompany = companies[0];
 
                 if (firstCompany) {
-                    setFormData({
+                    setFormData(prevFormData => ({
+                        ...prevFormData,
                         companyName: firstCompany.name || '',
-                        email: firstCompany.email || '',
-                        phoneNumber: firstCompany.mobileNumber || '',
-                        income: '', // Leave income blank for user input
-                        expense: '', // Leave expense blank for user input
-                        assets: '', // Leave assets blank for user input
-                        liabilities: '', // Leave liabilities blank for user input
-                        equity: '' // Leave equity blank for user input
-                    });
+                        phoneNumber: firstCompany.mobileNumber || ''
+                    }));
                 }
                 setLoading(false);
             })
@@ -70,136 +60,116 @@ const CompanyDashboard = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="text-center py-10">Loading...</div>;
     }
 
     return (
-        <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-8 rounded-3xl shadow-2xl max-w-5xl mx-auto mt-10">
-            <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">Company Revenue Form</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="flex space-x-6">
-                    {/* Company Details Section */}
-                    <div className="bg-white p-6 rounded-xl shadow-inner flex-1">
-                        <h3 className="text-xl font-semibold mb-4 text-gray-700">Company Information</h3>
-                        <div className="mb-4">
-                            <label className="block text-gray-600 font-medium mb-1">Company Name</label>
-                            <input
-                                type="text"
-                                name="companyName"
-                                value={formData.companyName}
-                                onChange={handleChange}
-                                className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                placeholder="Enter company name"
-                            />
-                        </div>
+        <div className="max-w-6xl mx-auto px-4 py-10">
+            {/* Title Section */}
+            <h1 className="text-3xl font-bold text-center text-gray-900 mb-12 tracking-wide">Company Dashboard</h1>
 
-                        <div className="mb-4">
-                            <label className="block text-gray-600 font-medium mb-1">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                placeholder="Enter company email"
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-gray-600 font-medium mb-1">Phone Number</label>
-                            <input
-                                type="tel"
-                                name="phoneNumber"
-                                value={formData.phoneNumber}
-                                onChange={handleChange}
-                                className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                placeholder="Enter phone number"
-                            />
-                        </div>
+            {/* Company Information */}
+            <div className="bg-gray-100 p-8 rounded-xl shadow-md mb-10 border border-gray-300">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Company Information</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div>
+                        <p className="text-gray-800 text-lg lg:ml-32">
+                            <span className="font-medium">Name: </span>
+                            {formData.companyName}
+                        </p>
                     </div>
-
-                    {/* Financial Details Section */}
-                    <div className="bg-white p-6 rounded-xl shadow-inner flex-1">
-                        <h3 className="text-xl font-semibold mb-4 text-gray-700">Financial Information</h3>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            {/* Income */}
-                            <div className="mb-4">
-                                <label className="block text-gray-600 font-medium mb-1">Income</label>
-                                <input
-                                    type="number"
-                                    name="income"
-                                    value={formData.income}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                    placeholder="Enter total income"
-                                />
-                            </div>
-
-                            {/* Expense */}
-                            <div className="mb-4">
-                                <label className="block text-gray-600 font-medium mb-1">Expense</label>
-                                <input
-                                    type="number"
-                                    name="expense"
-                                    value={formData.expense}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                    placeholder="Enter total expense"
-                                />
-                            </div>
-
-                            {/* Assets */}
-                            <div className="mb-4">
-                                <label className="block text-gray-600 font-medium mb-1">Assets</label>
-                                <input
-                                    type="number"
-                                    name="assets"
-                                    value={formData.assets}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                    placeholder="Enter total assets"
-                                />
-                            </div>
-
-                            {/* Liabilities */}
-                            <div className="mb-4">
-                                <label className="block text-gray-600 font-medium mb-1">Liabilities</label>
-                                <input
-                                    type="number"
-                                    name="liabilities"
-                                    value={formData.liabilities}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                    placeholder="Enter total liabilities"
-                                />
-                            </div>
-
-                            {/* Equity */}
-                            <div className="mb-4">
-                                <label className="block text-gray-600 font-medium mb-1">Equity</label>
-                                <input
-                                    type="number"
-                                    name="equity"
-                                    value={formData.equity}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 p-3 w-full rounded-lg shadow-sm focus:shadow-lg transform hover:scale-105 transition-transform duration-300"
-                                    placeholder="Enter total equity"
-                                />
-                            </div>
-                        </div>
+                    <div>
+                        <p className="text-gray-800 text-lg lg:ml-32">
+                            <span className="font-medium">Phone: </span>
+                            {formData.phoneNumber}
+                        </p>
                     </div>
                 </div>
-                {/* Submit Button */}
+            </div>
+
+            {/* Financial Form */}
+            <form onSubmit={handleSubmit} className="bg-blue-50 p-10 rounded-xl shadow-lg mb-10 border border-gray-300">
+                <h3 className="text-2xl font-semibold text-gray-800 mb-8 text-center">Financial Information</h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Income */}
+                    <div>
+                        <label className="block text-gray-800 font-medium mb-2">Income</label>
+                        <input
+                            type="number"
+                            name="income"
+                            value={formData.income}
+                            onChange={handleChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter total income"
+                        />
+                    </div>
+
+                    {/* Expense */}
+                    <div>
+                        <label className="block text-gray-800 font-medium mb-2">Expense</label>
+                        <input
+                            type="number"
+                            name="expense"
+                            value={formData.expense}
+                            onChange={handleChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter total expense"
+                        />
+                    </div>
+
+                    {/* Assets */}
+                    <div>
+                        <label className="block text-gray-800 font-medium mb-2">Assets</label>
+                        <input
+                            type="number"
+                            name="assets"
+                            value={formData.assets}
+                            onChange={handleChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter total assets"
+                        />
+                    </div>
+
+                    {/* Liabilities */}
+                    <div>
+                        <label className="block text-gray-800 font-medium mb-2">Liabilities</label>
+                        <input
+                            type="number"
+                            name="liabilities"
+                            value={formData.liabilities}
+                            onChange={handleChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter total liabilities"
+                        />
+                    </div>
+
+                    {/* Equity */}
+                    <div>
+                        <label className="block text-gray-800 font-medium mb-2">Equity</label>
+                        <input
+                            type="number"
+                            name="equity"
+                            value={formData.equity}
+                            onChange={handleChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter total equity"
+                        />
+                    </div>
+                </div>
+
                 <button
                     type="submit"
-                    className="bg-blue-600 text-white py-3 px-6 mt-6 rounded-lg w-full font-semibold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                    className="w-full bg-[#16423C] text-white font-semibold py-3 px-6 mt-10 rounded-lg shadow hover:bg-blue-700 transition duration-300"
                 >
                     Submit Financial Data
                 </button>
             </form>
 
-            <CompanyTable />
+            {/* Company Table Section */}
+            <div>
+                <CompanyTable />
+            </div>
         </div>
     );
 };
