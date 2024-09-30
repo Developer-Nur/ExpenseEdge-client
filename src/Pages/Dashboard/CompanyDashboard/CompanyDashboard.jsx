@@ -21,7 +21,7 @@ const CompanyDashboard = () => {
 
     // Fetch company data from API on component mount
     useEffect(() => {
-        axios.get("https://expense-edge.vercel.app/companies")
+        axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`)
             .then(response => {
                 // Assuming the API returns an array of companies
                 const companies = response.data;
