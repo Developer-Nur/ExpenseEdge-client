@@ -9,7 +9,7 @@ const CompanyTable = () => {
 
   // Fetch the list of users on component mount
   useEffect(() => {
-    axios.get('https://expense-edge.vercel.app/users')
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/users`)
       .then(response => {
         setUsers(response.data);  // Assuming response.data contains the list of users
         setLoading(false);  // Data fetched successfully
@@ -30,7 +30,7 @@ const CompanyTable = () => {
 
   // Function to handle approval of users
   const handleApprove = (userId) => {
-    axios.post(`https://expense-edge.vercel.app/users/approve/${userId}`)
+    axios.post(`${import.meta.env.VITE_SERVER_URL}/users/approve/${userId}`)
       .then(response => {
         Swal.fire({
           position: "top-end",

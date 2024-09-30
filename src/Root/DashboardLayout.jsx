@@ -14,7 +14,7 @@ const DashboardLayout = () => {
     useEffect(() => {
         if (user?.email) {
             // Make the API call to check the email in companies and users collections
-            axios.get(`https://expense-edge.vercel.app/find-by-email?email=${user.email}`)
+            axios.get(`${import.meta.env.VITE_SERVER_URL}/find-by-email?email=${user.email}`)
                 .then(response => {
                     console.log("API response: ", response.data);
                     setUserData(response.data);  // Set the returned data (either user or company)
