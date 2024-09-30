@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CompanyTable from '../CompanyTable/CompanyTable';
 import axios from 'axios';
+import { AuthInfo } from '../../../Provider/Authprovider';
 
 const CompanyDashboard = () => {
+    const {user} = useContext(AuthInfo);
+
     const [formData, setFormData] = useState({
         companyName: '',
         email: '',
@@ -56,8 +59,9 @@ const CompanyDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("https://expense-edge.vercel.app/company-data", formData)
+        axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, formData)
             .then(response => {
+                console.log(response.data);
                 console.log("Form submitted:", formData);
             })
             .catch(error => {
