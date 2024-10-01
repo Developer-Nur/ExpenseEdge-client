@@ -18,7 +18,7 @@ const CompanyDashboard = () => {
 
     // Fetch company data from API on component mount
     useEffect(() => {
-        axios.get("https://expense-edge.vercel.app/companies")
+        axios.get("http://localhost:5000/companies")
             .then(response => {
                 // Assuming the API returns an array of companies
                 const companies = response.data;
@@ -56,7 +56,7 @@ const CompanyDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("https://expense-edge.vercel.app/company-data", formData)
+        axios.post("http://localhost:5000/company-data", formData)
             .then(response => {
                 console.log("Form submitted:", formData);
             })

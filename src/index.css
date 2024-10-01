@@ -48,6 +48,15 @@ h5 {
   background-size: contain;
 }
 
+.dashboard-watermark {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.953), #ffffffda),
+    url(../public/favicon.png);
+  background-position: 65%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 
 
 
