@@ -9,7 +9,7 @@ const CompanyDashboard = () => {
     const [companyData, setCompanyData] = useState({});
     const [loading, setLoading] = useState(true);
 
-    console.log("the company", companyData);
+    // console.log("the company", companyData);
 
 
     // if the company email and user email matches then fetch the company info 
