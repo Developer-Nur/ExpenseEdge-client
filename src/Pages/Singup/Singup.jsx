@@ -16,7 +16,7 @@ const Singup = () => {
 
         const companyInfo = {
             password: data.password,
-            name: data.name,
+            companyName: data.name,
             mobileNumber: data.mobileNumber,
             location: data.location,
             email: data.email,

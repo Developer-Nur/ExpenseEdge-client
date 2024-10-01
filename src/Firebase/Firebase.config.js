@@ -12,6 +12,8 @@ const firebaseConfig = {
   storageBucket: "expense-edge-52415.appspot.com",
   messagingSenderId: "992736495301",
   appId: "1:992736495301:web:46f431497686c73aaad2ac"
+
+  
 };
 
 // Initialize Firebase
