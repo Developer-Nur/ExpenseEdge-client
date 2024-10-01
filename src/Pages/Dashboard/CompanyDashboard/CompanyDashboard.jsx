@@ -19,7 +19,7 @@ const CompanyDashboard = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`)
+        axios.get("https://expense-edge.vercel.app/companies")
             .then(response => {
                 const companies = response.data;
                 const firstCompany = companies[0];
@@ -49,7 +49,7 @@ const CompanyDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, formData)
+        axios.post("https://expense-edge.vercel.app/company-data", formData)
             .then(response => {
                 console.log(response.data);
                 console.log("Form submitted:", formData);
