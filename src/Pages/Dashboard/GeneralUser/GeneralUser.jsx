@@ -7,13 +7,13 @@ import { AuthInfo } from '../../../Provider/Authprovider';
 
 const GeneralUser = () => {
     const { user } = useContext(AuthInfo);
-    const [pendingCompany, setPendingCompany] = useState(null);
+    const [pendingCompany, setPendingCompany] = useState(null); 
 
     // fetch company data 
     const { data: companies = [], isLoading } = useQuery({
         queryKey: ['companies'],
         queryFn: async () => {
-            const { data } = await axios.get('https://expense-edge.vercel.app/companies');
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`);
             return data;
         }
     });
@@ -33,7 +33,7 @@ const GeneralUser = () => {
                 const useremail = user.email;
                 try {
                     setPendingCompany(company._id); 
-                    await axios.put(`https://expense-edge.vercel.app/users/${useremail}`, {
+                    await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${useremail}`, {
                         companyName: company.name,
                         righter: 'pending'
                     });
@@ -43,7 +43,7 @@ const GeneralUser = () => {
                         icon: "success"
                     });
                 } catch (error) {
-                    setPendingCompany(null);
+                    setPendingCompany(null); 
                     Swal.fire({
                         title: "Error",
                         text: "Failed to send request. Try again.",
@@ -57,11 +57,20 @@ const GeneralUser = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className="dashboard-watermark h-[100vh] w-full">
+        <div
+            style={{
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.953), #ffffffda), url(../public/favicon.png)`,
+                backgroundPosition: '65%',
+                backgroundAttachment: 'fixed',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'contain',
+            }}
+            className="h-[100vh] w-full"
+        >
             <h2 className="text-3xl md:text-4xl md:pt-10 text-center font-bold text-EEPrimary mb-4">
                 Collaborate With Your <br /> Company
             </h2>
-
+            
             {/* Table */}
             <div className="overflow-x-auto">
                 <table className="table text-xl">
@@ -84,8 +93,9 @@ const GeneralUser = () => {
                                     <button
                                         onClick={() => handleJoin(company)}
                                         disabled={pendingCompany === company._id}
-                                        className={`btn ${pendingCompany === company._id ? 'bg-gray-500 cursor-not-allowed' : 'hover:bg-[#246460] bg-[#1a4744]'
-                                            } text-white`}
+                                        className={`btn ${
+                                            pendingCompany === company._id ? 'bg-gray-500 cursor-not-allowed' : 'hover:bg-[#246460] bg-[#1a4744]'
+                                        } text-white`}
                                     >
                                         {pendingCompany === company._id ? 'Pending' : 'Join Now'}
                                     </button>
