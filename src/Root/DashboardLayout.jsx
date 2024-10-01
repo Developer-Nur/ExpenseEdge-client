@@ -17,16 +17,16 @@ const DashboardLayout = () => {
         queryKey: ['righter', user?.email],
         enabled: !loader && !!user?.email,
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/user/${user?.email}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`)
             return data.righter
         }
     })
 
-
+    console.log(righter);
     useEffect(() => {
         if (user?.email) {
             // Make the API call to check the email in companies and users collections
-            axios.get(`http://localhost:5000/find-by-email?email=${user.email}`)
+            axios.get(`${import.meta.env.VITE_SERVER_URL}/find-by-email?email=${user.email}`)
                 .then(response => {
                     // console.log("API response: ", response.data);
                     setUserData(response.data);  // Set the returned data (either user or company)

@@ -33,7 +33,7 @@ const ReportPage = () => {
     const [cashFlowData, setCashFlowData] = useState(mockCashFlowData); // Using mock data
 
     useEffect(() => {
-        axios.get("http://localhost:5000/company-data")
+        axios.get(`${import.meta.env.VITE_SERVER_URL}/company-data`)
         .then(({data})=>{
             console.log("data from server", data)
         })

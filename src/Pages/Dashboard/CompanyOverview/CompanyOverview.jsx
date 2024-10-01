@@ -14,14 +14,14 @@ const CompanyOverview = () => {
     const { data: persons = [] } = useQuery({
         queryKey: ['person', user?.email],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/user/${user?.email}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`)
             return data
         }
     })
     const { data: company = [], isLoading } = useQuery({
         queryKey: ['company', user?.email],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/company/${user?.email}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/company/${user?.email}`)
             return data
         }
     })
@@ -39,7 +39,7 @@ const CompanyOverview = () => {
         const allData = { income, expense, assets, liabilities, equity }
 
 
-        await axios.put(`http://localhost:5000/update-company-data/${company?._id}`, allData)
+        await axios.put(`${import.meta.env.VITE_SERVER_URL}/update-company-data/${company?._id}`, allData)
         try {
             Swal.fire({
                 position: "top-end",
@@ -48,7 +48,6 @@ const CompanyOverview = () => {
                 showConfirmButton: false,
                 timer: 2000
             });
-            navigate('/dashboard/AdvancedReports')
         } catch (error) {
             Swal.fire({
                 position: "top-end",

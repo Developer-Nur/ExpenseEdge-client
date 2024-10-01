@@ -32,7 +32,7 @@ const Singup = () => {
 
 
                 // console.log("user data is", userInfo);
-                axios.post('http://localhost:5000/companies', companyInfo)
+                axios.post(`${import.meta.env.VITE_SERVER_URL}/companies`, companyInfo)
                     .then(res => {
 
                         // console.log(res.data);
@@ -85,7 +85,7 @@ const Singup = () => {
 
                 }
                 // console.log("user data is", userInfo);
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post(`${import.meta.env.VITE_SERVER_URL}/users`, userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             Swal.fire({
