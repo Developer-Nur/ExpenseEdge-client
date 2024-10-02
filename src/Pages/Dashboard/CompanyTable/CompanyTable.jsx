@@ -11,18 +11,23 @@ const CompanyTable = () => {
 
   useEffect(() => {
     console.log("User object:", user);
-    if (user && user.name) {
-      fetchUsers();
-    } else {
-      setLoading(false);
-      setError('User is not defined or missing name');
-    }
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
+    .then(({data})=>{
+      console.log(data);
+      if (user && data.companyName) {
+        fetchUsers(data.companyName);
+      } else {
+        setLoading(false);
+        setError('User is not defined or missing name');
+      }
+    })
+    
   }, [user]);
   
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (companyName) => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users/${user?.name}`);
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users/${companyName}`);
       setUsers(response.data); // Assuming response.data contains the list of users
     } catch (error) {
       console.error('Error fetching users:', error);
