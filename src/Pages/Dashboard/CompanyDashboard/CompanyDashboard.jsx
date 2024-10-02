@@ -35,7 +35,6 @@ const CompanyDashboard = () => {
 
         const data = e.target;
 
-
         const companyValue = {
             income: data.income.value,
             expense: data.expense.value,
@@ -80,7 +79,7 @@ const CompanyDashboard = () => {
                     <div>
                         <p className="text-gray-800 text-lg lg:ml-32">
                             <span className="font-medium">Name: </span>
-                            {companyData?.name}
+                            {companyData?.companyName}
                         </p>
                     </div>
                     <div>
