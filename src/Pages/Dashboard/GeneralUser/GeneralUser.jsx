@@ -34,7 +34,7 @@ const GeneralUser = () => {
                 try {
                     setPendingCompany(company._id); 
                     await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${useremail}`, {
-                        companyName: company.name,
+                        companyName: company.companyName,
                         righter: 'pending'
                     });
                     Swal.fire({
@@ -87,7 +87,7 @@ const GeneralUser = () => {
                         {companies.map((company, idx) => (
                             <tr key={company._id}>
                                 <th>{idx + 1}</th>
-                                <td>{company.name}</td>
+                                <td>{company.companyName}</td>
                                 <td>{company.email}</td>
                                 <th>
                                     <button
