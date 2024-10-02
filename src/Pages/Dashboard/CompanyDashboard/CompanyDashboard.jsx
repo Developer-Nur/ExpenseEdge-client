@@ -5,7 +5,7 @@ import { AuthInfo } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
 
 const CompanyDashboard = () => {
-    const { user } = useContext(AuthInfo);
+    const { user } = useContext(AuthInfo); // Ensure this context provides 'user'
     const [companyData, setCompanyData] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -80,7 +80,7 @@ const CompanyDashboard = () => {
                     <div>
                         <p className="text-gray-800 text-lg lg:ml-32">
                             <span className="font-medium">Name: </span>
-                            {companyData?.name}
+                            {companyData?.companyName}
                         </p>
                     </div>
                     <div>
