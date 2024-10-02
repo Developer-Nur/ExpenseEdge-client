@@ -5,7 +5,7 @@ import { AuthInfo } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
 
 const CompanyDashboard = () => {
-    const { user } = useContext(AuthInfo);
+    const { user } = useContext(AuthInfo); // Ensure this context provides 'user'
     const [companyData, setCompanyData] = useState({});
     const [loading, setLoading] = useState(true);
 

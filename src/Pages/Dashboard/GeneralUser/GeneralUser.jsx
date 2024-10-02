@@ -22,7 +22,7 @@ const GeneralUser = () => {
 
     const handleJoin = async (company) => {
         Swal.fire({
-            title: `Are you sure you want to join ${company.name}?`,
+            title: `Are you sure you want to join ${company.companyName}?`,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#16423C",

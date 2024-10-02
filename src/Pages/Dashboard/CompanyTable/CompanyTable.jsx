@@ -1,21 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { AuthInfo } from '../../../Provider/Authprovider';
 
 const CompanyTable = () => {
-  const [users, setUsers] = useState([]);  // Store the list of users
-  const [loading, setLoading] = useState(true);  // Loading state
-  const [error, setError] = useState(null);  // Handle errors
+  const { user } = useContext(AuthInfo);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch the list of users on component mount
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    console.log("User object:", user);
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
+    .then(({data})=>{
+      console.log(data);
+      if (user && data.companyName) {
+        fetchUsers(data.companyName);
+      } else {
+        setLoading(false);
+        setError('User is not defined or missing name');
+      }
+    })
+    
+  }, [user]);
+  
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (companyName) => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users`);
-      setUsers(response.data);  // Assuming response.data contains the list of users
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users/${companyName}`);
+      setUsers(response.data); // Assuming response.data contains the list of users
     } catch (error) {
       console.error('Error fetching users:', error);
       setError('Failed to load users');
@@ -27,11 +40,10 @@ const CompanyTable = () => {
         timer: 5000
       });
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);
     }
   };
 
-  // Function to handle approval of users
   const handleApprove = async (userId) => {
     try {
       const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${userId}/approve`);
@@ -64,11 +76,11 @@ const CompanyTable = () => {
       <h2 className="text-2xl font-semibold mb-4 text-center">User Approval List</h2>
 
       {loading ? (
-        <p className="text-center">Loading users...</p>  // Show loading message
+        <p className="text-center">Loading users...</p>
       ) : error ? (
-        <p className="text-center text-red-500">{error}</p>  // Show error message
+        <p className="text-center text-red-500">{error}</p>
       ) : users.length === 0 ? (
-        <p className="text-center">No users found.</p>  // Handle empty user list
+        <p className="text-center">No users found.</p>
       ) : (
         <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
           <thead className="bg-gray-200">
