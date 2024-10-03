@@ -4,10 +4,14 @@ import axios from 'axios';
 import { AuthInfo } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
 
+
 const CompanyDashboard = () => {
     const { user } = useContext(AuthInfo); // Ensure this context provides 'user'
     const [companyData, setCompanyData] = useState({});
     const [loading, setLoading] = useState(true);
+
+ 
+    
 
     // console.log("the company", companyData);
 
@@ -17,7 +21,7 @@ const CompanyDashboard = () => {
         if (user?.email) {
             axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
                 .then(res => {
-                    console.log("company data found is", res.data);
+                    // console.log("company data found is", res.data);
                     setCompanyData(res.data);
                     setLoading(false);
                 })

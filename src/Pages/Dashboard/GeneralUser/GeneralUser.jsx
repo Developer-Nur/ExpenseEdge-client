@@ -4,16 +4,23 @@ import React, { useContext, useState } from 'react';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 import Swal from 'sweetalert2';
 import { AuthInfo } from '../../../Provider/Authprovider';
+import useAuthHeaders from "../../../Hooks/useAuthHeaders"
 
 const GeneralUser = () => {
     const { user } = useContext(AuthInfo);
     const [pendingCompany, setPendingCompany] = useState(null); 
 
+    // the headers for the jwt token
+    const headers = useAuthHeaders();
+
     // fetch company data 
     const { data: companies = [], isLoading } = useQuery({
         queryKey: ['companies'],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`);
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`, {
+                // sending the token to the server from local storage
+                headers: headers
+            });
             return data;
         }
     });
