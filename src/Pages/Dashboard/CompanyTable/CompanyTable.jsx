@@ -3,27 +3,31 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthInfo } from '../../../Provider/Authprovider';
 
+
+
 const CompanyTable = () => {
+
   const { user } = useContext(AuthInfo);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
-    console.log("User object:", user);
+    // console.log("User object:", user);
     axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
-    .then(({data})=>{
-      console.log(data);
-      if (user && data.companyName) {
-        fetchUsers(data.companyName);
-      } else {
-        setLoading(false);
-        setError('User is not defined or missing name');
-      }
-    })
-    
+      .then(({ data }) => {
+        // console.log(data);
+        if (user && data.companyName) {
+          fetchUsers(data.companyName);
+        } else {
+          setLoading(false);
+          setError('User is not defined or missing name');
+        }
+      })
+
   }, [user]);
-  
+
 
   const fetchUsers = async (companyName) => {
     try {
@@ -44,9 +48,19 @@ const CompanyTable = () => {
     }
   };
 
+  // console.log("token is the local storage is", localStorage.getItem("access-token"));
+
   const handleApprove = async (userId) => {
     try {
-      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${userId}/approve`);
+      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${userId}/approve`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("access-token")}`
+          }
+        }
+      );
+
       if (response.status === 200) {
         Swal.fire({
           position: "top-end",

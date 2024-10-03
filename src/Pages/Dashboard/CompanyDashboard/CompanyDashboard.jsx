@@ -3,19 +3,20 @@ import CompanyTable from '../CompanyTable/CompanyTable';
 import axios from 'axios';
 import { AuthInfo } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
+import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 
 
 const CompanyDashboard = () => {
     const { user } = useContext(AuthInfo); // Ensure this context provides 'user'
     const [companyData, setCompanyData] = useState({});
     const [loading, setLoading] = useState(true);
-   
 
- 
-    
+
+
+
 
     // console.log("the company", companyData);
-
+    // console.log("token", localStorage.getItem("access-token"));
 
     // if the company email and user email matches then fetch the company info 
     useEffect(() => {
@@ -48,9 +49,16 @@ const CompanyDashboard = () => {
             equity: data.equity.value
         };
 
-        // console.log("data to updadte in company", companyValue);
 
-        axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, companyValue)
+        const token = localStorage.getItem("access-token")
+        console.log("tghe token", token);
+
+
+        axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, companyValue, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
             .then(response => {
                 if (response.data.acknowledged) {
                     Swal.fire({
@@ -69,7 +77,7 @@ const CompanyDashboard = () => {
     };
 
     if (loading) {
-        return <div className="text-center py-10">Loading...</div>;
+        return <LoadingSpinner></LoadingSpinner>
     }
 
     return (

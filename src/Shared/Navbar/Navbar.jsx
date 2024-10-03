@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthInfo } from '../../Provider/Authprovider';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Navbar = () => {
     const { user, loader } = useContext(AuthInfo)
@@ -23,7 +24,7 @@ const Navbar = () => {
     </>
 
     if (loader) {
-        return <p>Loading....</p>
+        return <LoadingSpinner></LoadingSpinner>
     }
 
 

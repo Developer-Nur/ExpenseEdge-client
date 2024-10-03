@@ -57,10 +57,6 @@ const CompanyOverview = () => {
                 timer: 1500
             });
         }
-
-
-
-
     }
 
     if (isLoading) return <LoadingSpinner />;

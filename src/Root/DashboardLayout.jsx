@@ -18,11 +18,11 @@ const DashboardLayout = () => {
         enabled: !loader && !!user?.email,
         queryFn: async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`)
-            return data.righter
+            return data.righter || null
         }
     })
 
-    console.log(righter);
+    // console.log(righter);
     useEffect(() => {
         if (user?.email) {
             // Make the API call to check the email in companies and users collections
