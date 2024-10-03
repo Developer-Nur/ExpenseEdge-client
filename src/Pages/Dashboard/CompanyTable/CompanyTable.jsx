@@ -95,14 +95,14 @@ const CompanyTable = () => {
               <tr key={user._id} className="hover:bg-gray-100 transition duration-150">
                 <td className="py-2 px-4 border-b border-gray-300">{user.name}</td>
                 <td className="py-2 px-4 border-b border-gray-300">
-                  {user.approved ? (
+                  {user.righter == "approved" ? (
                     <span className="text-green-500 font-bold">Approved</span>
                   ) : (
                     <span className="text-yellow-600 font-bold">Pending</span>
                   )}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-300">
-                  {!user.approved && (
+                  {user.righter !== "approved" && (
                     <button
                       onClick={() => handleApprove(user._id)}
                       className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition duration-150"
