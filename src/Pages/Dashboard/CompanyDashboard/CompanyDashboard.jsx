@@ -11,6 +11,9 @@ const CompanyDashboard = () => {
     const [loading, setLoading] = useState(true);
    
 
+ 
+    
+
     // console.log("the company", companyData);
 
 
@@ -19,7 +22,7 @@ const CompanyDashboard = () => {
         if (user?.email) {
             axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
                 .then(res => {
-                    console.log("company data found is", res.data);
+                    // console.log("company data found is", res.data);
                     setCompanyData(res.data);
                     setLoading(false);
                 })
