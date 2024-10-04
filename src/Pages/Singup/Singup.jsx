@@ -16,7 +16,7 @@ const Singup = () => {
 
         const companyInfo = {
             password: data.password,
-            name: data.name,
+            companyName: data.companyName,
             mobileNumber: data.mobileNumber,
             location: data.location,
             email: data.email,
@@ -24,7 +24,9 @@ const Singup = () => {
             role: "admin"
         }
 
-        // console.log("register data is", companyInfo);
+
+
+        console.log("register data is", companyInfo);
 
         // creating a user for company registration and adding the data to the database company collection.
         createUser(companyInfo.email, companyInfo.password)
@@ -138,8 +140,8 @@ const Singup = () => {
                             <form onSubmit={handleSubmit(onSubmit)} className="card-body rounded-lg p-2  w-full text-left">
                                 <div className="form-control">
                                     <label className="block mb-2 label">Company Name</label>
-                                    <input placeholder='Company Name' className="input input-bordered w-full" type="text" {...register('name', { required: 'Name is required' })} />
-                                    {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+                                    <input placeholder='Company Name' className="input input-bordered w-full" type="text" {...register('companyName', { required: 'Name is required' })} />
+                                    {errors.companyName && <p className="text-red-500">{errors.companyName.message}</p>}
                                 </div>
 
                                 <div className="form-control">

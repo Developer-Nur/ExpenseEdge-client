@@ -4,16 +4,25 @@ import React, { useContext, useState } from 'react';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 import Swal from 'sweetalert2';
 import { AuthInfo } from '../../../Provider/Authprovider';
+// import useAuthHeaders from "../../../Hooks/useAuthHeaders"
 
 const GeneralUser = () => {
     const { user } = useContext(AuthInfo);
-    const [pendingCompany, setPendingCompany] = useState(null); 
+    const [pendingCompany, setPendingCompany] = useState(null);
+
+    // the headers for the jwt token
+    // const header = useAuthHeaders();
+    // console.log("the heasdr is", header);
 
     // fetch company data 
     const { data: companies = [], isLoading } = useQuery({
         queryKey: ['companies'],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`);
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem("access-token")}`
+                }
+            });
             return data;
         }
     });
@@ -22,7 +31,7 @@ const GeneralUser = () => {
 
     const handleJoin = async (company) => {
         Swal.fire({
-            title: `Are you sure you want to join ${company.name}?`,
+            title: `Are you sure you want to join ${company.companyName}?`,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#16423C",
@@ -32,9 +41,9 @@ const GeneralUser = () => {
             if (result.isConfirmed) {
                 const useremail = user.email;
                 try {
-                    setPendingCompany(company._id); 
+                    setPendingCompany(company._id);
                     await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${useremail}`, {
-                        companyName: company.name,
+                        companyName: company.companyName,
                         righter: 'pending'
                     });
                     Swal.fire({
@@ -43,7 +52,7 @@ const GeneralUser = () => {
                         icon: "success"
                     });
                 } catch (error) {
-                    setPendingCompany(null); 
+                    setPendingCompany(null);
                     Swal.fire({
                         title: "Error",
                         text: "Failed to send request. Try again.",
@@ -70,7 +79,7 @@ const GeneralUser = () => {
             <h2 className="text-3xl md:text-4xl md:pt-10 text-center font-bold text-EEPrimary mb-4">
                 Collaborate With Your <br /> Company
             </h2>
-            
+
             {/* Table */}
             <div className="overflow-x-auto">
                 <table className="table text-xl">
@@ -87,15 +96,14 @@ const GeneralUser = () => {
                         {companies.map((company, idx) => (
                             <tr key={company._id}>
                                 <th>{idx + 1}</th>
-                                <td>{company.name}</td>
+                                <td>{company.companyName}</td>
                                 <td>{company.email}</td>
                                 <th>
                                     <button
                                         onClick={() => handleJoin(company)}
                                         disabled={pendingCompany === company._id}
-                                        className={`btn ${
-                                            pendingCompany === company._id ? 'bg-gray-500 cursor-not-allowed' : 'hover:bg-[#246460] bg-[#1a4744]'
-                                        } text-white`}
+                                        className={`btn ${pendingCompany === company._id ? 'bg-gray-500 cursor-not-allowed' : 'hover:bg-[#246460] bg-[#1a4744]'
+                                            } text-white`}
                                     >
                                         {pendingCompany === company._id ? 'Pending' : 'Join Now'}
                                     </button>

@@ -1,21 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { AuthInfo } from '../../../Provider/Authprovider';
+
+
 
 const CompanyTable = () => {
-  const [users, setUsers] = useState([]);  // Store the list of users
-  const [loading, setLoading] = useState(true);  // Loading state
-  const [error, setError] = useState(null);  // Handle errors
 
-  // Fetch the list of users on component mount
+  const { user } = useContext(AuthInfo);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    // console.log("User object:", user);
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
+      .then(({ data }) => {
+        // console.log(data);
+        if (user && data.companyName) {
+          fetchUsers(data.companyName);
+        } else {
+          setLoading(false);
+          setError('User is not defined or missing name');
+        }
+      })
 
-  const fetchUsers = async () => {
+  }, [user]);
+
+
+  const fetchUsers = async (companyName) => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users`);
-      setUsers(response.data);  // Assuming response.data contains the list of users
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users/${companyName}`);
+      setUsers(response.data); // Assuming response.data contains the list of users
     } catch (error) {
       console.error('Error fetching users:', error);
       setError('Failed to load users');
@@ -27,14 +44,23 @@ const CompanyTable = () => {
         timer: 5000
       });
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);
     }
   };
 
-  // Function to handle approval of users
+  // console.log("token is the local storage is", localStorage.getItem("access-token"));
+
   const handleApprove = async (userId) => {
     try {
-      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${userId}/approve`);
+      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/users/${userId}/approve`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("access-token")}`
+          }
+        }
+      );
+
       if (response.status === 200) {
         Swal.fire({
           position: "top-end",
@@ -64,11 +90,11 @@ const CompanyTable = () => {
       <h2 className="text-2xl font-semibold mb-4 text-center">User Approval List</h2>
 
       {loading ? (
-        <p className="text-center">Loading users...</p>  // Show loading message
+        <p className="text-center">Loading users...</p>
       ) : error ? (
-        <p className="text-center text-red-500">{error}</p>  // Show error message
+        <p className="text-center text-red-500">{error}</p>
       ) : users.length === 0 ? (
-        <p className="text-center">No users found.</p>  // Handle empty user list
+        <p className="text-center">No users found.</p>
       ) : (
         <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
           <thead className="bg-gray-200">
@@ -83,14 +109,14 @@ const CompanyTable = () => {
               <tr key={user._id} className="hover:bg-gray-100 transition duration-150">
                 <td className="py-2 px-4 border-b border-gray-300">{user.name}</td>
                 <td className="py-2 px-4 border-b border-gray-300">
-                  {user.approved ? (
+                  {user.righter == "approved" ? (
                     <span className="text-green-500 font-bold">Approved</span>
                   ) : (
                     <span className="text-yellow-600 font-bold">Pending</span>
                   )}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-300">
-                  {!user.approved && (
+                  {user.righter !== "approved" && (
                     <button
                       onClick={() => handleApprove(user._id)}
                       className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition duration-150"

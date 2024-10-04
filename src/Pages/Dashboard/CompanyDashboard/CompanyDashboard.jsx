@@ -2,57 +2,74 @@ import React, { useState, useEffect, useContext } from 'react';
 import CompanyTable from '../CompanyTable/CompanyTable';
 import axios from 'axios';
 import { AuthInfo } from '../../../Provider/Authprovider';
+import Swal from 'sweetalert2';
+import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
+
 
 const CompanyDashboard = () => {
-    const { user } = useContext(AuthInfo);
-
-    const [formData, setFormData] = useState({
-        income: '',
-        expense: '',
-        assets: '',
-        liabilities: '',
-        equity: '',
-        companyName: '',
-        phoneNumber: ''
-    });
-
+    const { user } = useContext(AuthInfo); // Ensure this context provides 'user'
+    const [companyData, setCompanyData] = useState({});
     const [loading, setLoading] = useState(true);
 
+
+
+
+
+    // console.log("the company", companyData);
+    // console.log("token", localStorage.getItem("access-token"));
+
+    // if the company email and user email matches then fetch the company info 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`)
-            .then(response => {
-                const companies = response.data;
-                const firstCompany = companies[0];
+        if (user?.email) {
+            axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
+                .then(res => {
+                    // console.log("company data found is", res.data);
+                    setCompanyData(res.data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error("Error fetching company data:", error);
+                    setLoading(false);
+                });
+        }
+    }, [user?.email]);
 
-                if (firstCompany) {
-                    setFormData(prevFormData => ({
-                        ...prevFormData,
-                        companyName: firstCompany.name || '',
-                        phoneNumber: firstCompany.mobileNumber || ''
-                    }));
-                }
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error("Error fetching company data:", error);
-                setLoading(false);
-            });
-    }, []);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
+    // to collect the company value data and update
     const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, formData)
+        e.preventDefault()
+
+        const data = e.target;
+
+        const companyValue = {
+            income: data.income.value,
+            expense: data.expense.value,
+            assets: data.assets.value,
+            liabilities: data.liabilities.value,
+            equity: data.equity.value
+        };
+
+
+        const token = localStorage.getItem("access-token")
+        console.log("tghe token", token);
+
+
+        axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, companyValue, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
             .then(response => {
-                console.log(response.data);
-                console.log("Form submitted:", formData);
+                if (response.data.acknowledged) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                };
+                // console.log(response.data);
             })
             .catch(error => {
                 console.error("Error submitting form:", error);
@@ -60,7 +77,7 @@ const CompanyDashboard = () => {
     };
 
     if (loading) {
-        return <div className="text-center py-10">Loading...</div>;
+        return <LoadingSpinner></LoadingSpinner>
     }
 
     return (
@@ -75,13 +92,14 @@ const CompanyDashboard = () => {
                     <div>
                         <p className="text-gray-800 text-lg lg:ml-32">
                             <span className="font-medium">Name: </span>
-                            {formData.companyName}
+                            {companyData?.companyName}
                         </p>
                     </div>
                     <div>
                         <p className="text-gray-800 text-lg lg:ml-32">
                             <span className="font-medium">Phone: </span>
-                            {formData.phoneNumber}
+                            {companyData?.mobileNumber
+                            }
                         </p>
                     </div>
                 </div>
@@ -98,8 +116,6 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="income"
-                            value={formData.income}
-                            onChange={handleChange}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total income"
                         />
@@ -111,8 +127,6 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="expense"
-                            value={formData.expense}
-                            onChange={handleChange}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total expense"
                         />
@@ -124,8 +138,6 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="assets"
-                            value={formData.assets}
-                            onChange={handleChange}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total assets"
                         />
@@ -137,8 +149,7 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="liabilities"
-                            value={formData.liabilities}
-                            onChange={handleChange}
+
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total liabilities"
                         />
@@ -150,8 +161,7 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="equity"
-                            value={formData.equity}
-                            onChange={handleChange}
+
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total equity"
                         />
@@ -175,3 +185,4 @@ const CompanyDashboard = () => {
 };
 
 export default CompanyDashboard;
+
