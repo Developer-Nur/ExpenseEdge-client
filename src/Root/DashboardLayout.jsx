@@ -48,16 +48,16 @@ console.log(righter);
 
 
 
-    // useEffect(() => {
-    //     // Redirect based on userData
-    //     if (userData) {
-    //         if (userData === 'user') {
-    //             navigate('/dashboard/GeneralUser');  // Redirect to GeneralUser dashboard
-    //         } else if (userData === 'company') {
-    //             navigate('/dashboard/CompanyDashboard');  // Redirect to CompanyDashboard
-    //         }
-    //     }
-    // }, [userData, navigate]);  // Trigger the effect when userData changes
+    useEffect(() => {
+        // Redirect based on userData
+        if (userData) {
+            if (userData === 'user') {
+                navigate('/dashboard/GeneralUser');  // Redirect to GeneralUser dashboard
+            } else if (userData === 'company') {
+                navigate('/dashboard/CompanyDashboard');  // Redirect to CompanyDashboard
+            }
+        }
+    }, [userData, navigate]);  // Trigger the effect when userData changes
 
 
     // HANDLE LOGOUT
