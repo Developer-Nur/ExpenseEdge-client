@@ -71,7 +71,8 @@ const CompanyTable = () => {
         });
 
         // Update local state to reflect approval
-        setUsers(users.map(user => user._id === userId ? { ...user, approved: true } : user));
+        // setUsers(users.map(user => user._id === userId ? { ...user, approved: true } : user));
+        setUsers(users.map(user => user._id === userId ? { ...user, righter:"approved" } : user));
       }
     } catch (error) {
       console.error('Error approving user:', error);
