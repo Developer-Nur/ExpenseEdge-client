@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FilterBar from "../../Components/FilterBar/FilterBar";
 import ProfitLossChart from "../../Components/ProfitLossChart/ProfirLossChart";
 import BalanceSheetChart from "../../Components/BalanceSheetChart/BalanceSheetChart";
 import CashFlowChart from "../../Components/CashFlowChart/CashFlowChart";
 import ExportButton from "../../Components/ExportButton/ExportButton";
-import {
-    fetchProfitLossData,
-} from "../../utils/dataFetching/dataFetching";
+import { AuthInfo } from './../../Provider/Authprovider';
 import axios from "axios";
 
 // Mock data
@@ -23,6 +21,8 @@ const mockCashFlowData = [
 ];
 
 const ReportPage = () => {
+    const { user, loader } = useContext(AuthInfo);
+
     const [filters, setFilters] = useState({
         startDate: "",
         endDate: "",
@@ -33,26 +33,31 @@ const ReportPage = () => {
     const [cashFlowData, setCashFlowData] = useState(mockCashFlowData); // Using mock data
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_SERVER_URL}/company-data`)
-        .then(({data})=>{
-            console.log("data from server", data)
-        })
-        fetchProfitLossData(filters).then((data) => setProfitLossData(data));
-    }, [filters]);
+        if (!loader && user?.email) {
+            axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
+                .then(({ data }) => {
+                    setBalanceSheetData(data.balanceData)
+                    setCashFlowData(data.balanceData)
+                    setProfitLossData(data.incomeExpense)
+                    console.log(data);
+                })
 
-    useEffect(() => {
-        // Simulate data fetching here. Ensure it's an array
-        if (!Array.isArray(balanceSheetData)) {
-            setBalanceSheetData([]); // Handle invalid data
+            // Simulate data fetching here. Ensure it's an array
+            if (!Array.isArray(balanceSheetData)) {
+                setBalanceSheetData([]); // Handle invalid data
+            }
         }
-    }, [balanceSheetData]);
+    }, [ filters, user]);
 
+    if (loader) {
+        return <p>Loading...</p>;
+    }
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <h1 className="text-3xl font-bold text-center mb-6">Advanced Financial Reports</h1>
             <FilterBar setFilters={setFilters} />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                <div className="bg-white shadow-lg rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div className="bg-white shadow-lg rounded-lg p-4 col-span-2">
                     <h2 className="text-xl font-semibold mb-4">Profit & Loss</h2>
                     <ProfitLossChart data={profitLossData} />
                 </div>
