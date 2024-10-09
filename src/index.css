@@ -48,6 +48,25 @@ h5 {
   background-size: contain;
 }
 
+/* Remove increment and decrement arrows (spinners) in Firefox */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.my-custom-swal {
+  z-index: 10000 !important;
+  /* Ensure the SweetAlert popup stays on top */
+}
+
+.modal{
+  z-index: 0;
+}
 
 
 

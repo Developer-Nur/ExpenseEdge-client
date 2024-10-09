@@ -16,6 +16,7 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageCompany from "../Pages/Dashboard/ManageCompany/ManageCompany";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import FinancialOverview from "../Pages/Dashboard/FinancialOverview/FinancialOverview";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
@@ -66,6 +67,11 @@ export const router = createBrowserRouter([
         path: "CompanyOverview",
         element: <PrivateRoute><CompanyOverview></CompanyOverview></PrivateRoute>
       },
+      {
+        path: "financial-overview",
+        element: <PrivateRoute><FinancialOverview></FinancialOverview></PrivateRoute>
+      },
+
       // Admin route
       {
         path: "ManageUsers",

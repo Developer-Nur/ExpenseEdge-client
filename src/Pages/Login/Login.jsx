@@ -73,7 +73,6 @@ const Login = () => {
                 });
                 setLoader(false)
             })
-        // navigate(from, { replace: true });
     }
 
 
@@ -118,9 +117,6 @@ const Login = () => {
 
                                 {/* Login by google */}
                                 <button onClick={loginWithGoogle} className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg "> <FcGoogle /> Login with Google</button>
-
-                                {/* Login by twitter */}
-                                <button className="shadow-xl btn btn-ghost p-2 text-18px primary-color theme-sec hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg m-0"> <FaXTwitter /> Login with Twitter</button>
                             </section>
                         </div>
 

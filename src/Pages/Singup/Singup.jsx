@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import '../../index.css';
 import { useForm } from "react-hook-form"
 import { AuthInfo } from '../../Provider/Authprovider';
@@ -9,10 +9,17 @@ import axios from 'axios';
 const Singup = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, logOut, googleSingin, setLoader } = useContext(AuthInfo)
+    const [passwordError, setPasswordError] = useState(false);
 
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
+
+        // password confirmation checker
+        if (data.password !== data.confirmPassword) {
+            setPasswordError(true)
+            return;
+        }
 
         const companyInfo = {
             password: data.password,
@@ -71,7 +78,13 @@ const Singup = () => {
 
         const userEmail = e.target.email.value;
         const userPassword = e.target.password.value;
+        const checkPassword = e.target.confirmPassword.value;
         const userName = e.target.name.value;
+
+        if (userPassword !== checkPassword) {
+            setPasswordError(true)
+            return;
+        }
 
         // console.log("user form data is ",email, password );
 
@@ -116,28 +129,22 @@ const Singup = () => {
 
     return (
         <>
-            <div className='py-20 md:py-28 text-center singup-bg min-h-screen'>
-                <h2 className='text-2xl md:text-3xl lg:text-4xl '>You can register your company or <br /> as a general user</h2>
+            <div className='py-10 md:py-28 text-center singup-bg min-h-screen flex justify-center items-center'>
+
 
                 {/* registration separator */}
-                <div className='space-x-2 md:space-x-5 mt-10'>
-
+                <div className='space-x-2 md:space-x-5'>
+                    <h2 className='text-2xl md:text-3xl lg:text-4xl mb-7'>You can register your company or <br /> as a general user</h2>
 
                     {/* company registration modal*/}
+                    <button className="btn shadow-xl  btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_2').showModal()}>Register Company</button>
 
-                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Register Company</button>
-
-                    <dialog id="my_modal_3" className="modal">
+                    <dialog id="my_modal_2" className="modal">
                         <div className="modal-box">
-                            <form method="dialog">
-                                {/* if there is a button in form, it will close the modal */}
-                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            </form>
-                            <h3 className="font-bold text-lg">Register your Company </h3>
-
-                            {/* company registration form*/}
+                            <h3 className="font-bold text-lg">Register your Company</h3>
 
                             <form onSubmit={handleSubmit(onSubmit)} className="card-body rounded-lg p-2  w-full text-left">
+
                                 <div className="form-control">
                                     <label className="block mb-2 label">Company Name</label>
                                     <input placeholder='Company Name' className="input input-bordered w-full" type="text" {...register('companyName', { required: 'Name is required' })} />
@@ -170,8 +177,12 @@ const Singup = () => {
 
                                 <div className="form-control">
                                     <label className="label block mb-2">Mobile Number</label>
-                                    <input placeholder='Mobile Number' className="input input-bordered w-full" type="number" {...register('mobileNumber', { required: 'Mobile Number is required' })} />
+                                    <input
+                                        placeholder='Mobile Number'
+
+                                        className="input input-bordered w-full" type="number" {...register('mobileNumber', { required: 'Mobile Number is required' })} />
                                     {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber.message}</p>}
+
                                 </div>
 
                                 <div className="form-control">
@@ -180,24 +191,39 @@ const Singup = () => {
                                     {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                                 </div>
 
+                                <div className="form-control">
+                                    <label className="label block mb-2">Confirm Password</label>
+                                    <input placeholder='*******' className="input input-bordered w-full" type="password" {...register('confirmPassword', { required: 'Password is required' })} />
+                                    {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
+                                </div>
+
+
+                                {/* Error message (if any) */}
+                                {passwordError && (
+                                    <p className='text-base text-red-600'>Password do not match!</p>
+                                )}
+
+
+
                                 <div className="mt-4 p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66] text-center">
                                     <button className="button" type="submit">Register</button>
                                 </div>
                             </form>
 
                         </div>
+                        <form method="dialog" className="modal-backdrop">
+                            <button>close</button>
+                        </form>
                     </dialog>
 
                     {/* general user registration */}
+                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Register as user</button>
 
-                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_5').showModal()}>Register as user</button>
 
-                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-
+                    <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg">Register as user</h3>
 
-                            {/* user register form */}
                             <form onSubmit={handleRegisterUser} className="card-body  rounded-lg p-5">
                                 <div className="form-control">
                                     <label className="label">
@@ -219,19 +245,26 @@ const Singup = () => {
                                     <input name="password" type="password" placeholder="password" className="input input-bordered" required />
                                 </div>
 
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text ">Confirm Password</span>
+                                    </label>
+                                    <input name="confirmPassword" type="password" placeholder="password" className="input input-bordered" required />
+                                </div>
+                                {passwordError && (
+                                    <p className='text-base text-red-600'>Password do not match!</p>
+                                )}
+
                                 <div className="form-control mt-3">
                                     <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66]'>Register</button>
                                 </div>
 
                                 {/* redirect to register */}
                             </form>
-                            <div className="modal-action">
-                                <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn">✕</button>
-                                </form>
-                            </div>
                         </div>
+                        <form method="dialog" className="modal-backdrop">
+                            <button>close</button>
+                        </form>
                     </dialog>
                 </div>
             </div>
