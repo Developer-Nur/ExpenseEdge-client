@@ -6,10 +6,18 @@ import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
 
+    // jwt token
+    const token = localStorage.getItem("access-token")
+    // console.log("tghe token", token);
+
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users`);
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users`, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
             return data;
         }
     });

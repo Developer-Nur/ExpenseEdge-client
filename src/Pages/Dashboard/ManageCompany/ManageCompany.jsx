@@ -6,10 +6,18 @@ import Swal from 'sweetalert2';
 
 const ManageCompany = () => {
 
+    // jwt token
+    const token = localStorage.getItem("access-token")
+    // console.log("the token", token);
+
     const { data: companies = [], refetch, isLoading } = useQuery({
         queryKey: ['companies'],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`)
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/companies`, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
             return data
         }
     })
