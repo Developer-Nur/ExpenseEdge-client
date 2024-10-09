@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaLinkedin, FaTwitter } from "react-icons/fa"; // Importing LinkedIn and Twitter icons
+import Swal from "sweetalert2";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -24,8 +25,15 @@ const ContactUs = () => {
       subject: "",
       message: "",
     });
-    alert("Message sent successfully!");
+
+    Swal.fire({
+      title: "Success!",
+      text: "Message sent successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
+
 
   return (
     <section className="bg-gradient-to-r from-gray-100 via-white to-gray-100 py-16">

@@ -13,15 +13,18 @@ const DashboardLayout = () => {
     const [userData, setUserData] = useState(null);  // State to store user or company data
     const navigate = useNavigate();
 
-    const { data: righter = '', isLoading } = useQuery({
-        queryKey: ['righter', user?.email],
+    const { data: singleUser = {}, isLoading } = useQuery({
+        queryKey: ['user', user?.email],
         enabled: !loader && !!user?.email,
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`)
-            return data.righter || null
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`);
+            return data; // Return the entire data object containing both righter and role
         }
-    })
-console.log(righter);
+    });
+
+    const righter = singleUser.righter || '';
+    const role = singleUser.role || '';
+    console.log(righter, role);
 
 
     // console.log(righter);
@@ -116,15 +119,29 @@ console.log(righter);
                     ) : userData === 'user' ? (
                         // Menu for general users
                         <nav className="mt-4 space-y-2">
-                            {righter === 'approved' ? (
-                                <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyOverview">
-                                    Company Overview
-                                </NavLink>
-                            ) : (
-                                <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
-                                    Add to a company
-                                </NavLink>
-                            )}
+                            {
+                                role !== 'admin' && righter === 'approved' ? (
+                                    <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyOverview">
+                                        Company Overview
+                                    </NavLink>
+                                ) : role !== 'admin' && righter !== 'approved' ? (
+                                    <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
+                                        Add to a company
+                                    </NavLink>
+                                ) : null
+                            }
+                            {
+                                role === 'admin' && (
+                                    <>
+                                        <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageUsers">
+                                            Manage Users
+                                        </NavLink>
+                                        <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageCompany">
+                                            Manage Company
+                                        </NavLink>
+                                    </>
+                                )
+                            }
                         </nav>
 
                     ) : null}
