@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';  // Import axios
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../Shared/LoadingSpinner/LoadingSpinner';
+import "../index.css";
 
 const DashboardLayout = () => {
     const { user, logOut, loader } = useContext(AuthInfo);  // Get user from Auth context
@@ -114,6 +115,9 @@ const DashboardLayout = () => {
                             </NavLink>
                             <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/AdvancedReports">
                                 Advanced Financial Reports
+                            </NavLink>
+                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/financial-overview">
+                                Financial Overview
                             </NavLink>
                         </nav>
                     ) : userData === 'user' ? (
