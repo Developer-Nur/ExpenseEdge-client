@@ -51,7 +51,7 @@ const CompanyDashboard = () => {
 
 
         const token = localStorage.getItem("access-token")
-        console.log("tghe token", token);
+        // console.log("tghe token", token);
 
 
         axios.patch(`${import.meta.env.VITE_SERVER_URL}/company/${user.email}`, companyValue, {
