@@ -19,12 +19,13 @@ const CompanyOverview = () => {
         }
     })
     const { data: company = [], isLoading } = useQuery({
-        queryKey: ['company', user?.email],
+        queryKey: ['company', persons?.companyName],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/company/${user?.email}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/single-company/${persons?.companyName}`)
             return data
         }
     })
+console.log(company);
 
 
     const handleUpdate = async (e) => {
