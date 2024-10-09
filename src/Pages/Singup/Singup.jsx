@@ -81,7 +81,7 @@ const Singup = () => {
         const checkPassword = e.target.confirmPassword.value;
         const userName = e.target.name.value;
 
-        if(userPassword !== checkPassword){
+        if (userPassword !== checkPassword) {
             setPasswordError(true)
             return;
         }
@@ -137,18 +137,11 @@ const Singup = () => {
                     <h2 className='text-2xl md:text-3xl lg:text-4xl mb-7'>You can register your company or <br /> as a general user</h2>
 
                     {/* company registration modal*/}
+                    <button className="btn shadow-xl  btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_2').showModal()}>Register Company</button>
 
-                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Register Company</button>
-
-                    <dialog id="my_modal_3" className="modal">
+                    <dialog id="my_modal_2" className="modal">
                         <div className="modal-box">
-                            <form method="dialog">
-                                {/* if there is a button in form, it will close the modal */}
-                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            </form>
-                            <h3 className="font-bold text-lg">Register your Company </h3>
-
-                            {/* company registration form*/}
+                            <h3 className="font-bold text-lg">Register your Company</h3>
 
                             <form onSubmit={handleSubmit(onSubmit)} className="card-body rounded-lg p-2  w-full text-left">
 
@@ -218,18 +211,19 @@ const Singup = () => {
                             </form>
 
                         </div>
+                        <form method="dialog" className="modal-backdrop">
+                            <button>close</button>
+                        </form>
                     </dialog>
 
                     {/* general user registration */}
+                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Register as user</button>
 
-                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#003C43] rounded-lg" onClick={() => document.getElementById('my_modal_5').showModal()}>Register as user</button>
 
-                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-
+                    <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg">Register as user</h3>
 
-                            {/* user register form */}
                             <form onSubmit={handleRegisterUser} className="card-body  rounded-lg p-5">
                                 <div className="form-control">
                                     <label className="label">
@@ -267,13 +261,10 @@ const Singup = () => {
 
                                 {/* redirect to register */}
                             </form>
-                            <div className="modal-action">
-                                <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn">✕</button>
-                                </form>
-                            </div>
                         </div>
+                        <form method="dialog" className="modal-backdrop">
+                            <button>close</button>
+                        </form>
                     </dialog>
                 </div>
             </div>
