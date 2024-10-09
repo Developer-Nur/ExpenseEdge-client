@@ -12,6 +12,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdvancedReports from "../Pages/Dashboard/AdvancedReports/AdvancedReports";
 import CompanyOverview from "../Pages/Dashboard/CompanyOverview/CompanyOverview";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: 'aboutUs',
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: 'contactUs',
+        element: <ContactUs></ContactUs>
       }
     ]
   },
