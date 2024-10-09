@@ -63,13 +63,16 @@ const CompanyOverview = () => {
 
     return (
         <div className='dashboard-watermark h-full'>
-            <div>
-                <h2 className="text-3xl md:text-5xl md:pt-10 text-center font-bold text-EEPrimary mb-4">
-                    Welcome {persons?.name} to <br /> {persons?.companyName || company.name}
+            <div className='flex justify-between p-10'>
+                <h2 className=" test-base font-semibold text-EEPrimary">
+                    Hi {persons?.name}
+                </h2>
+                <h2 className=" test-base font-semibold text-EEPrimary">
+                    Welcome to {persons?.companyName}
                 </h2>
             </div>
 
-            <div className="bg-transparent mt-20 shadow-xl lg:p-20 pt-10 mx-4 p-5 md:p-10 lg:max-w-5xl lg:mx-auto rounded-xl border-2">
+            <div className="bg-transparent mt-100 shadow-xl lg:p-20 pt-10 mx-4 p-5 md:p-10 lg:max-w-5xl lg:mx-auto rounded-xl border-2">
                 <h3 className="text-2xl pb-5 md:pb-10 text-center font-semibold mb-4 text-gray-700"> Update Your Financial Information</h3>
 
                 <form onSubmit={handleUpdate}>
