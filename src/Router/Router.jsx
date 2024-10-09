@@ -17,6 +17,7 @@ import ManageCompany from "../Pages/Dashboard/ManageCompany/ManageCompany";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import FinancialOverview from "../Pages/Dashboard/FinancialOverview/FinancialOverview";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: 'aboutUs',
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: 'contactUs',
+        element: <ContactUs></ContactUs>
       }
     ]
   },
