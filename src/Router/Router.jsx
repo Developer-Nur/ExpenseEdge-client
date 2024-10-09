@@ -12,6 +12,10 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdvancedReports from "../Pages/Dashboard/AdvancedReports/AdvancedReports";
 import CompanyOverview from "../Pages/Dashboard/CompanyOverview/CompanyOverview";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import ManageCompany from "../Pages/Dashboard/ManageCompany/ManageCompany";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -39,23 +43,32 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: "GeneralUser",
-        element: <GeneralUser></GeneralUser>
+        element: <PrivateRoute><GeneralUser></GeneralUser></PrivateRoute>
       },
       {
         path: "CompanyDashboard",
-        element: <CompanyDashboard></CompanyDashboard>
+        element: <PrivateRoute><CompanyDashboard></CompanyDashboard></PrivateRoute>
       },
       {
         path: "AdvancedReports",
-        element: <AdvancedReports></AdvancedReports>
+        element: <PrivateRoute><AdvancedReports></AdvancedReports></PrivateRoute>
       },
       {
         path: "CompanyOverview",
-        element: <CompanyOverview></CompanyOverview>
+        element: <PrivateRoute><CompanyOverview></CompanyOverview></PrivateRoute>
+      },
+      // Admin route
+      {
+        path: "ManageUsers",
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+      },
+      {
+        path: "ManageCompany",
+        element: <AdminRoute><ManageCompany></ManageCompany></AdminRoute>
       },
     ]
   }
