@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <div>
-            <footer className="footer bg-[#B7C9D9] text-[#2E236C] p-10">
+            <footer className="footer bg-[#e9e4eb] text-[#2E236C] p-10">
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <a className="link link-hover">Branding</a>
@@ -90,7 +90,7 @@ const Footer = () => {
                 </div>
             </footer>
             
-            <footer className="footer bg-[#a4b6c6] text-[#2E236C] items-center p-4 justify-center">
+            <footer className="footer bg-[#cdb5cf] text-[#2E236C] items-center p-4 justify-center">
                 <aside className="grid-flow-col text-center">
                     <p>Copyright © {new Date().getFullYear()} - All rights reserved</p>
                 </aside>
