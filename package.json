@@ -12,11 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.56.2",
     "axios": "^1.7.7",
-<<<<<<< HEAD
-    "chart.js": "^4.4.4",
-=======
     "date-fns": "^4.1.0",
->>>>>>> 859ada33028f62f67bbffa059380285acccc5c6b
     "firebase": "^10.13.1",
     "lottie-react": "^2.4.0",
     "moment": "^2.30.1",
