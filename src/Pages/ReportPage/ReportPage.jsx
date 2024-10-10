@@ -36,9 +36,10 @@ const ReportPage = () => {
         if (!loader && user?.email) {
             axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
                 .then(({ data }) => {
-                    setBalanceSheetData(data.balanceData)
-                    setCashFlowData(data.balanceData)
-                    setProfitLossData(data.incomeExpense)
+                    console.log(data);
+                    setBalanceSheetData(data.data.balanceData)
+                    setCashFlowData(data.data.balanceData)
+                    setProfitLossData(data.data.incomeExpense)
                     console.log(data);
                 })
 

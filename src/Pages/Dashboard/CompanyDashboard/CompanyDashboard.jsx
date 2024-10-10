@@ -46,7 +46,8 @@ const CompanyDashboard = () => {
             expense: data.expense.value,
             assets: data.assets.value,
             liabilities: data.liabilities.value,
-            equity: data.equity.value
+            equity: data.equity.value,
+            expectedIncome: data.expectedIncome.value
         };
 
 
@@ -138,6 +139,7 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="assets"
+                            defaultValue={companyData.data?.balanceData[0].amount || 0}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total assets"
                         />
@@ -149,7 +151,7 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="liabilities"
-
+                            defaultValue={companyData.data?.balanceData[1].amount || 0}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total liabilities"
                         />
@@ -161,9 +163,21 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="equity"
-
+                            defaultValue={companyData.data.balanceData[2].amount || 0}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total equity"
+                        />
+                    </div>
+
+                    {/* Expected Income */}
+                    <div>
+                        <label className="block text-gray-800 font-medium mb-2">Expected Income</label>
+                        <input
+                            type="number"
+                            name="expectedIncome"
+                            defaultValue={companyData.data?.balanceData[3].amount || 0}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter Expected Income"
                         />
                     </div>
                 </div>
