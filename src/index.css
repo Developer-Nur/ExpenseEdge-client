@@ -20,11 +20,11 @@ h5 {
 
 
 :root {
-  --primary-color: #2E236C;
-  --secondary-color: #51497e;
-  --text-color: #4b4949;
-  --section-bg: #C4DAD2;
-  --Footer-bg: #E9EFEC;
+  --primary-color: #17153B;
+  --secondary-color: #2E236C;
+  --text-color: #433D8B;
+  --section-bg: #C8ACD6;
+  --Footer-bg: #e9e4eb;
 }
 
 .font-poppins {
