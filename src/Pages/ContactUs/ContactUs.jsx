@@ -39,7 +39,7 @@ const ContactUs = () => {
     <section className="bg-gradient-to-r from-gray-100 via-white to-gray-100 py-16">
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center text-green-800">Contact Us</h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-center text-[#2E236C]">Contact Us</h2>
         <p className="text-center text-lg text-gray-500 mt-4 md:mt-6 mb-8 md:mb-16">
           We’d love to hear from you! Reach out with your questions or feedback.
         </p>
@@ -109,7 +109,7 @@ const ContactUs = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-bold transition-transform duration-300 transform hover:scale-105"
+                  className="w-full bg-[#2E236C] hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-bold transition-transform duration-300 transform hover:scale-105"
                 >
                   Send Message
                 </button>
@@ -119,7 +119,7 @@ const ContactUs = () => {
 
           {/* Contact Information */}
           <div className="w-full lg:w-1/3 bg-white p-6 lg:p-10 rounded-xl shadow-2xl transition-transform duration-300 transform hover:scale-105">
-            <h3 className="text-3xl font-extrabold text-gray-700">Other ways to reach us</h3>
+            <h3 className="text-3xl font-extrabold text-[#2E236C]">Other ways to reach us</h3>
             <ul className="mt-6 space-y-4 text-gray-600">
               <li>
                 <strong>Email:</strong>{" "}

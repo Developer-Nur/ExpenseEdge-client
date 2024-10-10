@@ -16,7 +16,7 @@ const Reports = () => {
 
   return (
     <div className="p-10 pb-8 bg-gray-100">
-      <h1 className="text-3xl font-semibold text-center mb-8 text-gray-800">Financial Overview</h1>
+      <h1 className="text-3xl font-semibold text-center mb-8 text-[#2E236C]">Financial Overview</h1>
 
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
