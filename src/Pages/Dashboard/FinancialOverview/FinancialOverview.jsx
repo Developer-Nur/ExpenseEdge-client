@@ -1,31 +1,84 @@
-import React from 'react';
+
+
+import React, { useContext, useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Chart, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
+import "../../../index.css"
+import { AuthInfo } from '../../../Provider/Authprovider';
+import axios from 'axios';
+
+// Register necessary Chart.js components
+Chart.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 const FinancialOverview = () => {
+    const { user } = useContext(AuthInfo);
+    const [companyData, setCompanyData] = useState({});
+    console.log("company info is", companyData);
+
+    
+
+    useEffect(() => {
+        if (user?.email) {
+            axios.get(`${import.meta.env.VITE_SERVER_URL}/financial-info/${user.email}`)
+                .then(res => {
+                    // console.log("company data found is", res.data);
+                    setCompanyData(res.data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error("Error fetching company data:", error);
+                    setLoading(false);
+                });
+        }
+    }, [user?.email]);
+
+
+    // Data for the chart
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    // Chart configuration
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
+
+
     return (
         <div className='p-10'>
-            <div className="bg-white shadow-md rounded-lg p-4 mb-6">
-                <h3 className="text-md font-semibold text-gray-700 mb-2">Income vs Expenses Progress</h3>
+            <h2 className='text-2xl font-semibold text-center mb-10'>Financial overview based on your companies annual goal</h2>
 
-                <div className="mb-4">
-                    <div className="flex justify-between items-center mb-1">
-                        <span className="text-gray-600 text-sm">Income</span>
-                        <span className="text-blue-500 text-sm">$10,200</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                        <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: '75%' }}></div>
-                    </div>
-                </div>
-
-                <div>
-                    <div className="flex justify-between items-center mb-1">
-                        <span className="text-gray-600 text-sm">Expenses</span>
-                        <span className="text-red-500 text-sm">$8,750</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                        <div className="bg-red-500 h-2.5 rounded-full" style={{ width: '60%' }}></div>
-                    </div>
-                </div>
+            {/* live chart */}
+            {/* Line chart section */}
+            <div className="bg-gray-100 shadow-md rounded-lg p-4 mb-6">
+                <h3 className="text-md font-semibold text-gray-700 mb-2">Overview Chart for - <span className='font-semibold text-blue-600'>{companyData?.companyName}</span> Company</h3>
+                
+                <Line data={data} options={options} />
             </div>
+
+
+            
+
+
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white shadow-md rounded-lg p-4">
