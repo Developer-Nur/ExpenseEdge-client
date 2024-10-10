@@ -18,6 +18,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import FinancialOverview from "../Pages/Dashboard/FinancialOverview/FinancialOverview";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import EventCalendar from "../Pages/Dashboard/EventCalendar/EventCalendar";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: "financial-overview",
         element: <PrivateRoute><FinancialOverview></FinancialOverview></PrivateRoute>
+      },
+      {
+        path: "event-calendar",
+        element: <PrivateRoute><EventCalendar></EventCalendar></PrivateRoute>
       },
 
       // Admin route

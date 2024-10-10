@@ -94,7 +94,7 @@ const CompanyTable = () => {
         <p className="text-center">Loading users...</p>
       ) : error ? (
         <p className="text-center text-red-500">{error}</p>
-      ) : users.length === 0 ? (
+      ) : users.length === 0 || users.message ? (
         <p className="text-center">No users found.</p>
       ) : (
         <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
