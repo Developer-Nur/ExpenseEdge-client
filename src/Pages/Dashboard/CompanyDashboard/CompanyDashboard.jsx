@@ -15,7 +15,7 @@ const CompanyDashboard = () => {
 
 
 
-    // console.log("the company", companyData);
+    console.log("the company", user.email);
     // console.log("token", localStorage.getItem("access-token"));
 
     // if the company email and user email matches then fetch the company info 
@@ -163,7 +163,7 @@ const CompanyDashboard = () => {
                         <input
                             type="number"
                             name="equity"
-                            defaultValue={companyData.data.balanceData[2].amount || 0}
+                            // defaultValue={companyData.data.balanceData[2].amount || 0}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             placeholder="Enter total equity"
                         />
