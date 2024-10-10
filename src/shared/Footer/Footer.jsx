@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <div>
-            <footer className="footer bg-[#E9EFEC] text-[#16423C] p-10">
+            <footer className="footer bg-[#B7C9D9] text-[#2E236C] p-10">
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <a className="link link-hover">Branding</a>
@@ -36,7 +36,7 @@ const Footer = () => {
                                     placeholder="type here"
                                     className="input input-bordered join-item"
                                 />
-                                <button className="btn bg-[#6A9C89] join-item">Subscribe</button>
+                                <button className="btn bg-[#2E236C] join-item text-white">Subscribe</button>
                             </div>
                         </fieldset>
                     </form>
@@ -76,21 +76,21 @@ const Footer = () => {
                             </svg>
                         </a>
                         <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                      <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          className="fill-current"
-                          >
-                       <path d="M19 0h-14c-2.762 0-5 2.238-5 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.762-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.357c0-1.276-.023-2.919-1.778-2.919-1.779 0-2.051 1.389-2.051 2.827v5.449h-3v-10h2.877v1.368h.041c.4-.758 1.377-1.556 2.834-1.556 3.029 0 3.589 1.993 3.589 4.585v5.603z" />
-                  </svg>
-                 </a>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                className="fill-current"
+                            >
+                                <path d="M19 0h-14c-2.762 0-5 2.238-5 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.762-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.357c0-1.276-.023-2.919-1.778-2.919-1.779 0-2.051 1.389-2.051 2.827v5.449h-3v-10h2.877v1.368h.041c.4-.758 1.377-1.556 2.834-1.556 3.029 0 3.589 1.993 3.589 4.585v5.603z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </footer>
             
-            <footer className="footer bg-[#C4DAD2] text-[#16423C] items-center p-4 justify-center">
+            <footer className="footer bg-[#a4b6c6] text-[#2E236C] items-center p-4 justify-center">
                 <aside className="grid-flow-col text-center">
                     <p>Copyright © {new Date().getFullYear()} - All rights reserved</p>
                 </aside>

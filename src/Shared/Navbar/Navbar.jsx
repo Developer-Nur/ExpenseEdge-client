@@ -3,6 +3,7 @@ import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthInfo } from '../../Provider/Authprovider';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import logo from '../../assets/LogoExpense.png'
 
 const Navbar = () => {
     const { user, loader } = useContext(AuthInfo)
@@ -14,7 +15,7 @@ const Navbar = () => {
 
 
     const link = <>
-        <div className="flex text-[#16423C] font-extrabold lg:gap-6 gap-1 flex-col  lg:flex-row" id="NavItem">
+        <div className="flex text-[#2E236C] font-extrabold lg:gap-6 gap-1 flex-col  lg:flex-row" id="NavItem">
             <li ><NavLink to="/">Home</NavLink></li>
             {/* <li ><NavLink to="/">Income</NavLink></li>
             <li ><NavLink to="/">Expenses</NavLink></li>
@@ -60,8 +61,8 @@ const Navbar = () => {
                             {link}
                         </ul>
                     </div>
-                    <Link className="md:text-4xl lg:text-5xl text-2xl font-extrabold flex items-center gap-2 text-[#6A9C89]"><RiBarChart2Fill className='text-3xl md:text-5xl lg:text-6xl text-[#16423C]' /> ExpenseEdge</Link>
-
+                    {/* <Link className="md:text-4xl lg:text-5xl text-2xl font-extrabold flex items-center gap-2 text-[#6A9C89]"><RiBarChart2Fill className='text-3xl md:text-5xl lg:text-6xl text-[#16423C]' /> ExpenseEdge</Link> */}
+                    <img className='h-[140px] w-[180px] -mt-10' src={logo} alt="" />
                 </div>
 
                 <div className="navbar-end space-x-14">
@@ -78,7 +79,7 @@ const Navbar = () => {
 
                     {
                         user ?
-                            <Link to="/dashboard" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Dashboard
+                            <Link to="/dashboard" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"> Dashboard
 
                             </Link>
 
