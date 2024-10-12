@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import FinancialOverview from "../Pages/Dashboard/FinancialOverview/FinancialOverview";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import EventCalendar from "../Pages/Dashboard/EventCalendar/EventCalendar";
+import BudgetManagement from "../Pages/Dashboard/BudgetManagement/BudgetManagement";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: "event-calendar",
         element: <PrivateRoute><EventCalendar></EventCalendar></PrivateRoute>
+      },
+      {
+        path: "budget-management",
+        element: <PrivateRoute><BudgetManagement></BudgetManagement></PrivateRoute>
       },
 
       // Admin route
