@@ -30,11 +30,14 @@ const BudgetManagement = () => {
             const token = localStorage.getItem('access-token');
             const response = await axios.get(
                 `${import.meta.env.VITE_SERVER_URL}/budgets/${user.email}`,
-                {
-                    headers: { authorization: `Bearer ${token}` },
-                }
+                { headers: { authorization: `Bearer ${token}` } }
             );
-            setBudgets(response.data);
+
+            const updatedBudgets = response.data.map(budget => ({
+                ...budget,
+                isOverspent: budget.currentExpenditure > budget.budgetAmount,
+            }));
+            setBudgets(updatedBudgets);
         } catch (error) {
             console.error('Error fetching budgets:', error);
             setError('Failed to fetch budgets. Please try again later.');
@@ -78,7 +81,9 @@ const BudgetManagement = () => {
 
                     setBudgets((prevBudgets) =>
                         prevBudgets.map((b) =>
-                            b._id === editingBudgetId ? { ...budgetData, _id: b._id } : b
+                            b._id === editingBudgetId
+                                ? { ...budgetData, _id: b._id, isOverspent: budgetData.currentExpenditure > budgetData.budgetAmount }
+                                : b
                         )
                     );
                     setEditingBudgetId(null);
@@ -97,7 +102,10 @@ const BudgetManagement = () => {
                         timer: 1500,
                     });
 
-                    setBudgets((prevBudgets) => [...prevBudgets, response.data.budget]);
+                    setBudgets((prevBudgets) => [
+                        ...prevBudgets,
+                        { ...response.data.budget, isOverspent: response.data.budget.currentExpenditure > response.data.budget.budgetAmount }
+                    ]);
                 }
 
                 setNewBudget({
@@ -165,20 +173,27 @@ const BudgetManagement = () => {
 
     if (loading) return <LoadingSpinner />;
 
+
     return (
-        <div className="p-8 bg-gray-50 min-h-screen flex flex-col items-center">
-            <div className="bg-white shadow-xl rounded-lg p-6 mb-12 max-w-lg w-full">
-                <h2 className="text-3xl font-bold mb-6">
+        <div className="p-8 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen flex flex-col items-center">
+            <div className="bg-white shadow-2xl rounded-xl p-8 mb-12 max-w-lg w-full transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                <h2 className="text-4xl font-extrabold text-gray-800 mb-8 text-center tracking-tight">
                     {editingBudgetId ? 'Edit Budget' : 'Create New Budget'}
                 </h2>
-                <div className="space-y-4">
+
+                <p className="text-gray-500 text-lg mb-4 text-center">
+                    {editingBudgetId
+                        ? 'Modify the budget details below.'
+                        : 'Fill in the fields to create a new budget for your project.'}
+                </p>
+                <div className="space-y-6">
                     <input
                         type="text"
                         placeholder="Department Name"
                         name="department"
                         value={newBudget.department}
                         onChange={handleInputChange}
-                        className="w-full p-3 border rounded-lg"
+                        className="w-full p-4 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition duration-300"
                     />
                     <input
                         type="text"
@@ -186,7 +201,7 @@ const BudgetManagement = () => {
                         name="projectName"
                         value={newBudget.projectName}
                         onChange={handleInputChange}
-                        className="w-full p-3 border rounded-lg"
+                        className="w-full p-4 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition duration-300"
                     />
                     <input
                         type="number"
@@ -194,7 +209,7 @@ const BudgetManagement = () => {
                         name="budgetAmount"
                         value={newBudget.budgetAmount}
                         onChange={handleInputChange}
-                        className="w-full p-3 border rounded-lg"
+                        className="w-full p-4 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition duration-300"
                     />
                     <input
                         type="number"
@@ -202,7 +217,7 @@ const BudgetManagement = () => {
                         name="currentExpenditure"
                         value={newBudget.currentExpenditure}
                         onChange={handleInputChange}
-                        className="w-full p-3 border rounded-lg"
+                        className="w-full p-4 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition duration-300"
                     />
                 </div>
                 <button
