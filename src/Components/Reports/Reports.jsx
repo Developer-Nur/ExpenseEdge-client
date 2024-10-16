@@ -20,7 +20,7 @@ const Reports = () => {
 
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white shadow-md rounded-lg p-4 mb-6">
+        {/* <div className="bg-white shadow-md rounded-lg p-4 mb-6">
           <h3 className="text-md font-semibold text-gray-700 mb-2">Income vs Expenses Progress</h3>
 
           <div className="mb-4">
@@ -42,7 +42,7 @@ const Reports = () => {
               <div className="bg-red-500 h-2.5 rounded-full" style={{ width: '60%' }}></div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="bg-white shadow-md rounded-lg p-4 text-center">
           <h2 className="text-lg font-semibold text-gray-700 mb-2">Success Counter</h2>

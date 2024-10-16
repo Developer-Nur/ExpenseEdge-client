@@ -6,25 +6,25 @@ const Features = () => {
   const features = [
     {
       id: 1,
-      icon: <FaRegCheckCircle className="text-5xl text-EEPrimary" />,
+      icon: <FaRegCheckCircle className="text-5xl text-[#2E236C]" />,
       title: "Secure Transactions",
       description: "Your business transactions are protected with end-to-end encryption."
     },
     {
       id: 2,
-      icon: <FaChartBar className="text-5xl text-EEPrimary" />,
+      icon: <FaChartBar className="text-5xl text-[#2E236C]" />,
       title: "Analytics Dashboard",
       description: "Monitor your revenue and growth with comprehensive financial analytics."
     },
     {
       id: 3,
-      icon: <FaUserShield className="text-5xl text-EEPrimary" />,
+      icon: <FaUserShield className="text-5xl text-[#2E236C]" />,
       title: "User Permissions",
       description: "Manage user roles and set permissions to control access to financial data."
     },
     {
       id: 4,
-      icon: <FaGlobe className="text-5xl text-EEPrimary" />,
+      icon: <FaGlobe className="text-5xl text-[#2E236C]" />,
       title: "Global Access",
       description: "Manage your accounts from anywhere in the world, with cross-device compatibility."
     },

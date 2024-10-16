@@ -14,7 +14,7 @@ const AboutUs = () => {
             </section>
 
             {/* Who We Are Section */}
-            <section className="bg-[var(--section-bg)] py-16">
+            <section className="bg-white shadow-lg py-16 shadow-gray-300/50">
                 <div className="max-w-5xl mx-auto px-6 text-center">
                     <h2 className="text-4xl font-bold text-[var(--primary-color)] mb-8">Who We Are</h2>
                     <p className="text-lg text-[var(--text-color)] max-w-3xl mx-auto">
@@ -36,7 +36,7 @@ const AboutUs = () => {
             </section>
 
             {/* Key Features Section */}
-            <section className="bg-[var(--section-bg)] py-16">
+            <section className="bg-[#e9e4eb] py-16">
                 <div className="max-w-7xl mx-auto px-6">
                     <h2 className="text-4xl font-bold text-[var(--primary-color)] text-center mb-12">Our Key Features</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -88,7 +88,7 @@ const AboutUs = () => {
             </section>
 
             {/* Why Choose Us Section */}
-            <section className="bg-[var(--section-bg)] py-16">
+            <section className="bg-white shadow-xl shadow-slate-400 py-16">
                 <div className="max-w-5xl mx-auto px-6 text-center">
                     <h2 className="text-4xl font-bold text-[var(--primary-color)] mb-8">Why Choose Us?</h2>
                     <p className="text-lg text-[var(--text-color)] max-w-3xl mx-auto">
