@@ -122,6 +122,9 @@ const DashboardLayout = () => {
                             <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/event-calendar">
                                 Event Calendar
                             </NavLink>
+                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/budget-management">
+                                Budget Management
+                            </NavLink>
                         </nav>
                     ) : userData === 'user' ? (
                         // Menu for general users
