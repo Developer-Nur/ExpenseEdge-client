@@ -1,17 +1,60 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthInfo } from '../../Provider/Authprovider';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import logo from '../../assets/LogoExpense.png'
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const { user, loader } = useContext(AuthInfo)
+    const [userData, setUserData] = useState(null);  // State to store user or company data
     // const { theUser, setTheUser } = useState()
 
     // console.log("the user is", user, "and loading status", loader);
 
     // const theUser = setTheUser(user)
+    const { data: singleUser = [], isLoading } = useQuery({
+        queryKey: ['user', user?.email],
+        enabled: !loader && !!user?.email,
+        queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/${user?.email}`);
+            return data; // Return the entire data object containing both righter and role
+        }
+    });
+
+    const righter = singleUser.righter || '';
+    const role = singleUser.role || '';
+    console.log(role, righter)
+
+    useEffect(() => {
+        if (user?.email) {
+            // Make the API call to check the email in companies and users collections
+            axios.get(`${import.meta.env.VITE_SERVER_URL}/find-by-email?email=${user.email}`)
+                .then(response => {
+                    // console.log("API response: ", response.data);
+                    setUserData(response.data);  // Set the returned data (either user or company)
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Failed to load data",
+                        showConfirmButton: false,
+                        timer: 5000
+                    });
+                });
+        }
+    }, [user?.email]);
+
+
+
+
+
+
 
 
     const link = <>
@@ -26,6 +69,9 @@ const Navbar = () => {
     </>
 
     if (loader) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
+    if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
 
@@ -78,15 +124,46 @@ const Navbar = () => {
                     {/*  */}
 
                     {
-                        user ?
-                            <Link to="/dashboard" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"> Dashboard
-
+                        user ? (
+                            role === 'admin' ? (
+                                <Link
+                                    to="/dashboard/ManageUsers"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                >
+                                    Dashboard
+                                </Link>
+                            ) : userData && userData === 'company' ? (
+                                <Link
+                                    to="/dashboard/CompanyDashboard"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                >
+                                    Dashboard
+                                </Link>
+                            ) : role !== 'admin' && righter === 'approved' ? (
+                                <Link
+                                    to="/dashboard/CompanyOverview"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                >
+                                    Dashboard
+                                </Link>
+                            ) : (
+                                <Link
+                                    to="/dashboard/GeneralUser"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                >
+                                    Dashboard
+                                </Link>
+                            )
+                        ) : (
+                            <Link
+                                to="/Login"
+                                className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"
+                            >
+                                Login
                             </Link>
-
-                            :
-                            <Link to="/Login" className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"> Login </Link>
-
+                        )
                     }
+
 
 
 
