@@ -8,6 +8,8 @@ import axios from 'axios';  // Import axios
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../Shared/LoadingSpinner/LoadingSpinner';
 import "../index.css";
+import logo from '../../src/assets/LogoExpense.png'
+// import LoadingSpinner from '../shared/LoadingSpinner/LoadingSpinner';
 
 const DashboardLayout = () => {
     const { user, logOut, loader } = useContext(AuthInfo);  // Get user from Auth context
@@ -82,7 +84,7 @@ const DashboardLayout = () => {
             });
     };
 
-    if (isLoading) return <LoadingSpinner />
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
 
     return (
         <div className="drawer lg:drawer-open">
@@ -99,9 +101,23 @@ const DashboardLayout = () => {
 
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="space-y-3 lg:space-y-5 text-xl font-semibold p-4 md:p-9 md:w-80 min-h-full bg-[#16423C] text-white">
+                <ul className="space-y-3 lg:space-y-5 text-xl font-semibold p-4 md:p-9 md:w-80 min-h-full bg-[#2E236C] text-white">
+                    
+                    
+
+                 
+                 {/* Add Logo here */}
+                   <li className="flex justify-center mb-4">
+                        <img 
+                            src={logo}  // Replace with your logo path
+                            alt="Logo" 
+                            className="w-24 h-auto"  // Adjust width and height as per your need
+                        />
+                    </li>
+
+                    
                     <li>
-                        <Link className="hover:bg-[#6A9C89] flex gap-2 items-center p-2" to="/">
+                        <Link className="hover:bg-[#433D8B] flex gap-2 items-center p-2" to="/">
                             <FaHome /> Home
                         </Link>
                     </li>
@@ -110,19 +126,19 @@ const DashboardLayout = () => {
                         // Menu for company dashboard
                         <nav className="mt-4 space-y-2">
 
-                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyDashboard">
+                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyDashboard">
                                 Company Dashboard
                             </NavLink>
-                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/AdvancedReports">
+                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/AdvancedReports">
                                 Advanced Financial Reports
                             </NavLink>
-                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/financial-overview">
+                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/financial-overview">
                                 Financial Overview
                             </NavLink>
-                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/event-calendar">
+                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/event-calendar">
                                 Event Calendar
                             </NavLink>
-                            <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/budget-management">
+                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/budget-management">
                                 Budget Management
                             </NavLink>
                         </nav>
@@ -131,11 +147,11 @@ const DashboardLayout = () => {
                         <nav className="mt-4 space-y-2">
                             {
                                 role !== 'admin' && righter === 'approved' ? (
-                                    <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyOverview">
+                                    <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyOverview">
                                         Company Overview
                                     </NavLink>
                                 ) : role !== 'admin' && righter !== 'approved' ? (
-                                    <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
+                                    <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
                                         Add to a company
                                     </NavLink>
                                 ) : null
@@ -143,10 +159,10 @@ const DashboardLayout = () => {
                             {
                                 role === 'admin' && (
                                     <>
-                                        <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageUsers">
+                                        <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageUsers">
                                             Manage Users
                                         </NavLink>
-                                        <NavLink className="uppercase text-white hover:text-[#16423C] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageCompany">
+                                        <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageCompany">
                                             Manage Company
                                         </NavLink>
                                     </>

@@ -80,7 +80,7 @@ const Navbar = () => {
 
         <div className='shadow-lg  md:h-24'>
             <div className="navbar  bg-base-100 pt-4 container mx-auto font-poppins">
-                <div className="navbar-start">
+                <div className="navbar-start flex items-center">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
@@ -105,7 +105,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     {/* <Link className="md:text-4xl lg:text-5xl text-2xl font-extrabold flex items-center gap-2 text-[#6A9C89]"><RiBarChart2Fill className='text-3xl md:text-5xl lg:text-6xl text-[#16423C]' /> ExpenseEdge</Link> */}
-                    <img className='h-[140px] w-[180px] -mt-10' src={logo} alt="" />
+                    <img className='h-[60px] w-auto ml-4' src={logo} alt="Logo" /> 
                 </div>
 
                 <div className="navbar-end space-x-14">
@@ -125,28 +125,28 @@ const Navbar = () => {
                             role === 'admin' ? (
                                 <Link
                                     to="/dashboard/ManageUsers"
-                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#433D8B] bg-[#2E236C] text-white font-bold"
                                 >
                                     Dashboard
                                 </Link>
                             ) : userData && userData === 'company' ? (
                                 <Link
                                     to="/dashboard/CompanyDashboard"
-                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#433D8B] bg-[#2E236C] text-white font-bold"
                                 >
                                     Dashboard
                                 </Link>
                             ) : role !== 'admin' && righter === 'approved' ? (
                                 <Link
                                     to="/dashboard/CompanyOverview"
-                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#433D8B] bg-[#2E236C] text-white font-bold"
                                 >
                                     Dashboard
                                 </Link>
                             ) : (
                                 <Link
                                     to="/dashboard/GeneralUser"
-                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#2E236C] text-white font-bold"
+                                    className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#433D8B] bg-[#2E236C] text-white font-bold"
                                 >
                                     Dashboard
                                 </Link>
@@ -154,7 +154,7 @@ const Navbar = () => {
                         ) : (
                             <Link
                                 to="/Login"
-                                className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#246460] bg-[#1a4744] text-[#dadada] font-bold"
+                                className="rounded-lg md:p-3 p-2 text-[12px] md:text-[16px] hover:cursor-pointer hover:bg-[#433D8B] bg-[#2E236C] text-[#dadada] font-bold"
                             >
                                 Login
                             </Link>
