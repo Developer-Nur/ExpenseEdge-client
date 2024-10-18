@@ -3,6 +3,7 @@ import CompanyTable from '../CompanyTable/CompanyTable';
 import axios from 'axios';
 import { AuthInfo } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
+// import LoadingSpinner from '../../../shared/LoadingSpinner/LoadingSpinner';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 
 
@@ -82,119 +83,134 @@ const CompanyDashboard = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-10">
-            {/* Title Section */}
-            <h1 className="text-3xl font-bold text-center text-gray-900 mb-12 tracking-wide">Company Dashboard</h1>
+        <div className="max-w-5xl mx-auto px-6 py-12">
+        {/* Title Section */}
+        <h1 className="text-4xl font-bold text-center text-[#17153B] mb-16 tracking-wide">
+          Company Dashboard
+        </h1>
+      
+        {/* Company Information */}
+        <div className="bg-white rounded-lg p-4 shadow-md mb-8 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+  <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-start">
+    Company Information
+  </h2>
+  <div className="space-y-2">
+    <div>
+      <p className="text-gray-700 text-base">
+        <span className="font-semibold text-gray-900">Name: </span>
+        {companyData?.companyName}
+      </p>
+    </div>
+    <div>
+      <p className="text-gray-700 text-base">
+        <span className="font-semibold text-gray-900">Phone: </span>
+        {companyData?.mobileNumber}
+      </p>
+    </div>
+  </div>
+</div>
 
-            {/* Company Information */}
-            <div className="bg-gray-100 p-8 rounded-xl shadow-md mb-10 border border-gray-300">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Company Information</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div>
-                        <p className="text-gray-800 text-lg lg:ml-32">
-                            <span className="font-medium">Name: </span>
-                            {companyData?.companyName}
-                        </p>
-                    </div>
-                    <div>
-                        <p className="text-gray-800 text-lg lg:ml-32">
-                            <span className="font-medium">Phone: </span>
-                            {companyData?.mobileNumber
-                            }
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            {/* Financial Form */}
-            <form onSubmit={handleSubmit} className="bg-blue-50 p-10 rounded-xl shadow-lg mb-10 border border-gray-300">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-8 text-center">Financial Information</h3>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Income */}
-                    <div>
-                        <label className="block text-gray-800 font-medium mb-2">Income</label>
-                        <input
-                            type="number"
-                            name="income"
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            placeholder="Enter total income"
-                        />
-                    </div>
-
-                    {/* Expense */}
-                    <div>
-                        <label className="block text-gray-800 font-medium mb-2">Expense</label>
-                        <input
-                            type="number"
-                            name="expense"
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            placeholder="Enter total expense"
-                        />
-                    </div>
-
-                    {/* Assets */}
-                    <div>
-                        <label className="block text-gray-800 font-medium mb-2">Assets</label>
-                        <input
-                            type="number"
-                            name="assets"
-                            defaultValue={companyData.data?.balanceData[0].amount || 0}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            placeholder="Enter total assets"
-                        />
-                    </div>
-
-                    {/* Liabilities */}
-                    <div>
-                        <label className="block text-gray-800 font-medium mb-2">Liabilities</label>
-                        <input
-                            type="number"
-                            name="liabilities"
-                            defaultValue={companyData.data?.balanceData[1].amount || 0}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            placeholder="Enter total liabilities"
-                        />
-                    </div>
-
-                    {/* Equity */}
-                    <div>
-                        <label className="block text-gray-800 font-medium mb-2">Equity</label>
-                        <input
-                            type="number"
-                            name="equity"
-                            // defaultValue={companyData.data.balanceData[2].amount || 0}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            placeholder="Enter total equity"
-                        />
-                    </div>
-
-                    {/* Expected Income */}
-                    <div>
-                        <label className="block text-gray-800 font-medium mb-2">Expected Income</label>
-                        <input
-                            type="number"
-                            name="expectedIncome"
-                            defaultValue={companyData.data?.balanceData[3].amount || 0}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            placeholder="Enter Expected Income"
-                        />
-                    </div>
-                </div>
-
-                <button
-                    type="submit"
-                    className="w-full bg-[#16423C] text-white font-semibold py-3 px-6 mt-10 rounded-lg shadow hover:bg-blue-700 transition duration-300"
-                >
-                    Submit Financial Data
-                </button>
-            </form>
-
-            {/* Company Table Section */}
+      
+        {/* Financial Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-gradient-to-r from-blue-50 to-purple-100 p-12 rounded-3xl shadow-xl mb-12 border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
+        >
+          <h3 className="text-3xl font-semibold text-gray-800 mb-10 text-center">
+            Financial Information
+          </h3>
+      
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Income */}
             <div>
-                <CompanyTable />
+              <label className="block text-gray-800 font-semibold mb-3">Income</label>
+              <input
+                type="number"
+                name="income"
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-300 focus:outline-none hover:shadow-lg transition-shadow duration-200"
+                placeholder="Enter total income"
+              />
             </div>
+      
+            {/* Expense */}
+            <div>
+              <label className="block text-gray-800 font-semibold mb-3">Expense</label>
+              <input
+                type="number"
+                name="expense"
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-300 focus:outline-none hover:shadow-lg transition-shadow duration-200"
+                placeholder="Enter total expense"
+              />
+            </div>
+      
+            {/* Assets */}
+            <div>
+              <label className="block text-gray-800 font-semibold mb-3">Assets</label>
+              <input
+                type="number"
+                name="assets"
+                defaultValue={companyData.data?.balanceData[0].amount || 0}
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-300 focus:outline-none hover:shadow-lg transition-shadow duration-200"
+                placeholder="Enter total assets"
+              />
+            </div>
+      
+            {/* Liabilities */}
+            <div>
+              <label className="block text-gray-800 font-semibold mb-3">
+                Liabilities
+              </label>
+              <input
+                type="number"
+                name="liabilities"
+                defaultValue={companyData.data?.balanceData[1].amount || 0}
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-300 focus:outline-none hover:shadow-lg transition-shadow duration-200"
+                placeholder="Enter total liabilities"
+              />
+            </div>
+      
+            {/* Equity */}
+            <div>
+              <label className="block text-gray-800 font-semibold mb-3">Equity</label>
+              <input
+                type="number"
+                name="equity"
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-300 focus:outline-none hover:shadow-lg transition-shadow duration-200"
+                placeholder="Enter total equity"
+              />
+            </div>
+      
+            {/* Expected Income */}
+            <div>
+              <label className="block text-gray-800 font-semibold mb-3">
+                Expected Income
+              </label>
+              <input
+                type="number"
+                name="expectedIncome"
+                defaultValue={companyData.data?.balanceData[3].amount || 0}
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-300 focus:outline-none hover:shadow-lg transition-shadow duration-200"
+                placeholder="Enter expected income"
+              />
+            </div>
+          </div>
+      
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 px-6 mt-10 rounded-xl shadow-lg hover:opacity-90 transition-opacity duration-300"
+          >
+            Submit Financial Data
+          </button>
+        </form>
+      
+        {/* Company Table Section */}
+        <div className="bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <CompanyTable />
         </div>
+      </div>
+      
+
     );
 };
 
