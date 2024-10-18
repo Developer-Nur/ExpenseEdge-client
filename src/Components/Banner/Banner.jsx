@@ -48,7 +48,7 @@ const Banner = () => {
     };
 
     const buttonStyle = {
-        marginTop: "30px",
+        marginTop: "40px",
         padding: "10px 20px",
         backgroundColor: "#2E236C",
         color: "white",
