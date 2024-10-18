@@ -61,7 +61,7 @@ const Features = () => {
 
         {/* Call to Action */}
         <div className="mt-12">
-          <a href="/features" className="btn bg-[#2E236C] text-white">
+          <a href="/aboutUs" className="btn bg-[#2E236C] text-white">
             Learn More
           </a>
         </div>
