@@ -9,7 +9,7 @@ export const AuthInfo = createContext();
 const googleProvider = new GoogleAuthProvider();
 
 
-const Authprovider = ({ children }) => {
+const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null); // user state
     const [loader, setLoader] = useState(true);
@@ -86,4 +86,4 @@ const Authprovider = ({ children }) => {
     );
 };
 
-export default Authprovider;
+export default AuthProvider;

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
-import { AuthInfo } from '../../Provider/Authprovider';
+import { AuthInfo } from '../../Provider/AuthProvider';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import logo from '../../assets/LogoExpense.png'
 import { useQuery } from '@tanstack/react-query';
@@ -60,9 +60,6 @@ const Navbar = () => {
     const link = <>
         <div className="flex text-[#2E236C] font-extrabold lg:gap-6 gap-1 flex-col  lg:flex-row" id="NavItem">
             <li ><NavLink to="/">Home</NavLink></li>
-            {/* <li ><NavLink to="/">Income</NavLink></li>
-            <li ><NavLink to="/">Expenses</NavLink></li>
-            <li ><NavLink to="/">Reports</NavLink></li> */}
             <li ><NavLink to="/aboutUs">About Us</NavLink></li>
             <li ><NavLink to="/contactUs">Contact Us</NavLink></li>
         </div>

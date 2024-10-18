@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { AuthInfo } from '../../../Provider/Authprovider';
+import { AuthInfo } from '../../../Provider/AuthProvider';
 import axios from 'axios';
 
 // Initialize moment localizer

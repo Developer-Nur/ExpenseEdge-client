@@ -4,7 +4,7 @@
 // import { Line } from 'react-chartjs-2';
 // import { Chart, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 // import "../../../index.css"
-// import { AuthInfo } from '../../../Provider/Authprovider';
+// import { AuthInfo } from '../../../Provider/AuthProvider';
 // import axios from 'axios';
 
 // // Register necessary Chart.js components
@@ -100,7 +100,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import "../../../index.css"
-import { AuthInfo } from '../../../Provider/Authprovider';
+import { AuthInfo } from '../../../Provider/AuthProvider';
 import axios from 'axios';
 
 // Register necessary Chart.js components

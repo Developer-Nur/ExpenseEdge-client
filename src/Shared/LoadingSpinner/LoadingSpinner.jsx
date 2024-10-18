@@ -1,3 +1,4 @@
+import React from 'react';
 import { ImSpinner10 } from "react-icons/im";
 const LoadingSpinner = ({ smallHeight }) => {
     return (

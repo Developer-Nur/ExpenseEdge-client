@@ -4,7 +4,7 @@ import ProfitLossChart from "../../Components/ProfitLossChart/ProfirLossChart";
 import BalanceSheetChart from "../../Components/BalanceSheetChart/BalanceSheetChart";
 import CashFlowChart from "../../Components/CashFlowChart/CashFlowChart";
 import ExportButton from "../../Components/ExportButton/ExportButton";
-import { AuthInfo } from './../../Provider/Authprovider';
+import { AuthInfo } from '../../Provider/AuthProvider';
 import axios from "axios";
 
 // Mock data

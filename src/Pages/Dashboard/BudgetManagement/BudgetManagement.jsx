@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { FaExclamationTriangle, FaEdit, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
-import { AuthInfo } from '../../../Provider/Authprovider';
+import { AuthInfo } from '../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 

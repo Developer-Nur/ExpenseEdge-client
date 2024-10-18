@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { AuthInfo } from '../Provider/Authprovider';
+import { AuthInfo } from '../Provider/AuthProvider';
 import LoadingSpinner from '../Shared/LoadingSpinner/LoadingSpinner';
 import { Navigate } from 'react-router-dom';
 

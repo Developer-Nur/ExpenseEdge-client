@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import '../../index.css';
 import { useForm } from "react-hook-form"
-import { AuthInfo } from '../../Provider/Authprovider';
+import { AuthInfo } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';

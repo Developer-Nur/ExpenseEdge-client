@@ -6,7 +6,7 @@ import '../../index.css'
 import Lottie from 'lottie-react';
 import Swal from 'sweetalert2';
 import { useContext } from 'react';
-import { AuthInfo } from '../../Provider/Authprovider';
+import { AuthInfo } from '../../Provider/AuthProvider';
 
 const Login = () => {
 
