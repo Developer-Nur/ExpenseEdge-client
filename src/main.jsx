@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './Router/Router.jsx'
-import Authprovider from './Provider/Authprovider.jsx'
+import AuthProvider from './Provider/AuthProvider.jsx'
 import {
   QueryClient,
   QueryClientProvider,
@@ -13,10 +13,10 @@ const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <Authprovider>
+    <AuthProvider>
       <StrictMode>
         <RouterProvider router={router} />
       </StrictMode>
-    </Authprovider>
+    </AuthProvider>
   </QueryClientProvider>
 )

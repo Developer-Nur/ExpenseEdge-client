@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { AuthInfo } from '../../../Provider/Authprovider';
+import { AuthInfo } from '../../../Provider/AuthProvider';
 import { useQuery, useQueryClient } from '@tanstack/react-query'; // Import useQueryClient
 import axios from 'axios';
 import Swal from 'sweetalert2';

@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 import Swal from 'sweetalert2';
-import { AuthInfo } from '../../../Provider/Authprovider';
+import { AuthInfo } from '../../../Provider/AuthProvider';
 // import useAuthHeaders from "../../../Hooks/useAuthHeaders"
 
 const GeneralUser = () => {

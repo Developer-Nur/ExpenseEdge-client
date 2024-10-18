@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import CompanyTable from '../CompanyTable/CompanyTable';
 import axios from 'axios';
-import { AuthInfo } from '../../../Provider/Authprovider';
+import { AuthInfo } from '../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 

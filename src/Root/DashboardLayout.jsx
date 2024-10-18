@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaAlignJustify, FaHome } from 'react-icons/fa';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { AuthInfo } from '../Provider/Authprovider';
+import { AuthInfo } from '../Provider/AuthProvider';
 import { FiLogOut } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 import axios from 'axios';  // Import axios
