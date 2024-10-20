@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,7 +12,10 @@ const firebaseConfig = {
   storageBucket: "expense-edge-52415.appspot.com",
   messagingSenderId: "992736495301",
   appId: "1:992736495301:web:46f431497686c73aaad2ac"
+
+  
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app)

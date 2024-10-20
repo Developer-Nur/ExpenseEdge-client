@@ -9,35 +9,69 @@
 @tailwind utilities;
 
 
-h1,h2,h3,h4,h5{
-    font-family: sans-serif, Arial;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: sans-serif, Arial;
+  color: var(--primary-color);
 }
 
 
 :root {
-    --primary-color: #16423C;
-    --secondary-color: #6A9C89;
-    --text-color: #838383;
-    --section-bg: #C4DAD2;
-    --Footer-bg: #E9EFEC;
-  }
+  --primary-color: #17153B;
+  --secondary-color: #2E236C;
+  --text-color: #433D8B;
+  --section-bg: #C8ACD6;
+  --Footer-bg: #e9e4eb;
+}
 
 .font-poppins {
-    font-family: "Poppins", sans-serif;  
-  }
-
-.section-bg{
-    background-color: var(--section-bg);
+  font-family: "Poppins", sans-serif;
 }
-.text-color{
+
+.section-bg {
+  background-color: var(--section-bg);
+}
+
+.text-color {
   color: var(--text-color);
 }
 
+.singup-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.953), #ffffffda),
+    url(../public/favicon.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Remove increment and decrement arrows (spinners) in Firefox */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.my-custom-swal {
+  z-index: 10000 !important;
+  /* Ensure the SweetAlert popup stays on top */
+}
+
+.modal{
+  z-index: 0;
+}
 
 
 
 #NavItem a.active {
   background-color: unset;
-  color: #6A9C89;
+  color: #C8ACD6;
   font-weight: 800;
 }
