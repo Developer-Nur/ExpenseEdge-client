@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { FaExclamationTriangle, FaEdit, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
-import { AuthInfo } from '../../../Provider/AuthProvider';
+import { AuthInfo } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
 import LoadingSpinner from '../../../Shared/LoadingSpinner/LoadingSpinner';
 
@@ -175,17 +175,19 @@ const BudgetManagement = () => {
 
 
     return (
-        <div className="p-8 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen flex flex-col items-center">
-            <div className="bg-white shadow-2xl rounded-xl p-8 mb-12 max-w-lg w-full transition-transform transform hover:scale-105 duration-300 ease-in-out">
+        <div className="p-8 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen flex flex-col lg:flex-row items-start justify-center gap-8">
+
+            {/* Form Section - Larger on bigger screens */}
+            <div className="lg:w-2/3 w-full bg-white shadow-2xl rounded-xl p-8 transition-transform transform hover:scale-105 duration-300 ease-in-out">
                 <h2 className="text-4xl font-extrabold text-gray-800 mb-8 text-center tracking-tight">
                     {editingBudgetId ? 'Edit Budget' : 'Create New Budget'}
                 </h2>
-
                 <p className="text-gray-500 text-lg mb-4 text-center">
                     {editingBudgetId
                         ? 'Modify the budget details below.'
                         : 'Fill in the fields to create a new budget for your project.'}
                 </p>
+
                 <div className="space-y-6">
                     <input
                         type="text"
@@ -220,19 +222,20 @@ const BudgetManagement = () => {
                         className="w-full p-4 border rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition duration-300"
                     />
                 </div>
+
                 <button
                     onClick={handleSubmit}
                     className="mt-6 w-full py-3 px-4 text-white font-semibold rounded-lg shadow-lg 
-               bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500
-               transition-all duration-300 transform hover:scale-105 active:scale-95"
+                   bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500
+                   transition-all duration-300 transform hover:scale-105 active:scale-95"
                 >
                     <AiOutlinePlusCircle className="mr-2 text-2xl" />
                     {editingBudgetId ? 'Update Budget' : 'Add Budget'}
                 </button>
-
             </div>
 
-            <div className="space-y-6 max-w-lg w-full">
+            {/* Budget List Section - Smaller on bigger screens */}
+            <div className="lg:w-1/3 w-full overflow-y-auto max-h-screen lg:max-h-[80vh] space-y-6 pr-2">
                 {budgets.length > 0 ? (
                     budgets.map((budget) => {
                         const progress = (budget.currentExpenditure / budget.budgetAmount) * 100;
@@ -299,7 +302,6 @@ const BudgetManagement = () => {
                     <p className="text-gray-500 text-center">No budgets found.</p>
                 )}
             </div>
-
         </div>
     );
 };
