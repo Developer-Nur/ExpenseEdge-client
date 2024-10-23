@@ -105,8 +105,8 @@ const ManageUsers = () => {
                             <tr key={user._id}>
                                 <th>{idx + 1}</th>
                                 <th>{user?.email}</th>
-                                <th className={user?.role === 'admin' && 'font-extrabold text-green-500'}>
-                                    {user?.role}
+                                <th>
+                                    <span className={user?.role === 'admin' && ' text-gray-600 bg-green-200 p-2 rounded-full'}>{user?.role}</span>
                                 </th>
                                 <th>
                                     <button
