@@ -205,7 +205,7 @@ const Singup = () => {
 
 
 
-                                <div className="mt-4 p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66] text-center">
+                                <div className="mt-4 p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#c08df0] text-center">
                                     <button className="button" type="submit">Register</button>
                                 </div>
                             </form>
@@ -256,7 +256,7 @@ const Singup = () => {
                                 )}
 
                                 <div className="form-control mt-3">
-                                    <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66]'>Register</button>
+                                    <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#c08df0]'>Register</button>
                                 </div>
 
                                 {/* redirect to register */}
