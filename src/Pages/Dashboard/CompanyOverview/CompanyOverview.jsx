@@ -113,7 +113,7 @@ const CompanyOverview = () => {
                                 <td><span className='bg-green-200 p-2 rounded-full'>{item.income ?? 'N/A'}</span></td>
                                 <td><span className='bg-red-200 p-2 rounded-full'>{item.expense ?? 'N/A'}</span></td>
                                 <td>
-                                    <button className="hover:bg-[#246460] bg-[#1a4744] p-2 md:p-3  md:px-9 text-green-100" onClick={() => openModal(item)}>
+                                    <button className="hover:bg-[#433D8B] bg-[#2E236C] p-2 md:p-3  md:px-9 text-green-100" onClick={() => openModal(item)}>
                                         Edit
                                     </button>
                                 </td>
