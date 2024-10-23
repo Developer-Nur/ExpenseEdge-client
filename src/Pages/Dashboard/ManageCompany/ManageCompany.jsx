@@ -70,11 +70,10 @@ const ManageCompany = () => {
                         companies.map((company, idx) => <tr key={company._id}>
                             <th>{idx + 1}</th>
                             <th>{company?.companyName}</th>
-                            <th>{company?.email}</th>
-                            <th><button onClick={() => handleDelete(company)} className="hover:bg-[#246460] bg-[#8d2f2f] p-3 text-green-100">Delete</button></th>
+                            <th><span className='text-gray-800 bg-blue-200 p-2 rounded-xl'>{company?.email}</span></th>
+                            <th><button onClick={() => handleDelete(company)} className="hover:bg-[#a73d3d] bg-[#8d2f2f] p-3 text-green-100">Delete</button></th>
 
                         </tr>)
-
                     }
 
 
