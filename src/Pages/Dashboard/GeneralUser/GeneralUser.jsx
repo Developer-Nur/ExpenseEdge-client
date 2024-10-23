@@ -102,7 +102,7 @@ const GeneralUser = () => {
                                     <button
                                         onClick={() => handleJoin(company)}
                                         disabled={pendingCompany === company._id}
-                                        className={`btn ${pendingCompany === company._id ? 'bg-gray-500 cursor-not-allowed' : 'hover:bg-[#246460] bg-[#1a4744]'
+                                        className={`btn ${pendingCompany === company._id ? 'bg-gray-500 cursor-not-allowed' : 'hover:bg-[#433D8B] bg-[#2E236C] p-2 md:p-3  md:px-4 text-green-100'
                                             } text-white`}
                                     >
                                         {pendingCompany === company._id ? 'Pending' : 'Join Now'}

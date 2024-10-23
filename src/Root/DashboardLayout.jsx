@@ -152,7 +152,7 @@ const DashboardLayout = () => {
                                     </NavLink>
                                 ) : role !== 'admin' && righter !== 'approved' ? (
                                     <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
-                                        Add to a company
+                                        Add to a Company
                                     </NavLink>
                                 ) : null
                             }
