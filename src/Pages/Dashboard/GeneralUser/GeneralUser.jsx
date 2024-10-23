@@ -34,7 +34,7 @@ const GeneralUser = () => {
             title: `Are you sure you want to join ${company.companyName}?`,
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#16423C",
+            confirmButtonColor: "#433D8B",
             cancelButtonColor: "#d33",
             confirmButtonText: "Confirm"
         }).then(async (result) => {
