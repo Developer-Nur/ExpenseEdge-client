@@ -217,7 +217,7 @@ const Singup = () => {
                     </dialog>
 
                     {/* general user registration */}
-                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-[#E3FEF7] hover:bg-[#433D8B] rounded-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Register as user</button>
+                    <button className="shadow-xl btn btn-ghost px-4 py-2 text-lg primary-color bg-white hover:text-gray-200 hover:bg-[#433D8B] rounded-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Register as user</button>
 
 
                     <dialog id="my_modal_3" className="modal">
@@ -256,7 +256,7 @@ const Singup = () => {
                                 )}
 
                                 <div className="form-control mt-3">
-                                    <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#c08df0]'>Register</button>
+                                    <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins section-bg hover:bg-[#c08df0]'>Register</button>
                                 </div>
 
                                 {/* redirect to register */}

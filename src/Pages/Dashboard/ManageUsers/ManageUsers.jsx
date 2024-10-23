@@ -112,7 +112,8 @@ const ManageUsers = () => {
                                     <button
                                         onClick={() => handleMakeAdmin(user)}
                                         disabled={user?.role === 'admin'}
-                                        className="hover:bg-[#246460] bg-[#1a4744] p-2 md:p-3 text-green-100">
+                                        className={`p-2 md:p-3 text-green-100 ${user?.role === 'admin' ? 'bg-[#2E236C] text-gray-400 cursor-not-allowed' : 'bg-[#2E236C] hover:bg-[#433D8B]'}`}
+                                    >
                                         Make Admin
                                     </button>
                                 </th>
