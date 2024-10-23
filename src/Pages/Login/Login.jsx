@@ -99,7 +99,7 @@ const Login = () => {
                             </div>
 
                             <div className="form-control mt-3">
-                                <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins hover:text-[#ffffff] section-bg hover:bg-[#135D66]'>Login</button>
+                                <button className='p-2 lg:p-3 text-base lg:text-[18px] rounded-lg title-sec theme-bg font-poppins section-bg hover:bg-[#c08df0]'>Login</button>
                             </div>
 
                             {/* redirect to register */}
