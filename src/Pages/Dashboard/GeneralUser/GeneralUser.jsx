@@ -66,23 +66,14 @@ const GeneralUser = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div
-            style={{
-                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.953), #ffffffda), url(../public/favicon.png)`,
-                backgroundPosition: '65%',
-                backgroundAttachment: 'fixed',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-            }}
-            className="h-[100vh] w-full"
-        >
+        <div>
             <h2 className="text-3xl md:text-4xl md:pt-10 text-center font-bold text-EEPrimary mb-4">
                 Collaborate With Your <br /> Company
             </h2>
 
             {/* Table */}
             <div className="overflow-x-auto">
-                <table className="table text-xl">
+                <table className="table md:text-xl">
                     {/* head */}
                     <thead className='text-xl'>
                         <tr>
@@ -96,8 +87,8 @@ const GeneralUser = () => {
                         {companies.map((company, idx) => (
                             <tr key={company._id}>
                                 <th>{idx + 1}</th>
-                                <td>{company.companyName}</td>
-                                <td>{company.email}</td>
+                                <td><span className='text-gray-800 bg-blue-200 p-2 rounded-xl'>{company.companyName}</span></td>
+                                <td><span className='text-gray-800 bg-green-200 p-2 rounded-xl'>{company.email}</span></td>
                                 <th>
                                     <button
                                         onClick={() => handleJoin(company)}

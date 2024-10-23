@@ -89,7 +89,7 @@ const DashboardLayout = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content overflow-y-auto">
 
                 <label htmlFor="my-drawer-2" className="m-10 mt-6 mb-8 drawer-button lg:hidden">
                     <FaAlignJustify className="bg-gray-50 text-5xl p-3 ml-3" />

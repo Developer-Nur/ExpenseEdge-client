@@ -87,7 +87,7 @@ const ManageUsers = () => {
     const sortedUsers = users.sort((a, b) => (a.role === 'admin' ? -1 : 1));
 
     return (
-        <div>
+        <div className="overflow-x-auto">
             <table className="table">
                 {/* head */}
                 <thead>

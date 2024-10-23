@@ -53,7 +53,7 @@ const ManageCompany = () => {
     if (isLoading) return <LoadingSpinner />
 
     return (
-        <div>
+        <div className="overflow-x-auto">
             <table className="table">
                 {/* head */}
                 <thead>
