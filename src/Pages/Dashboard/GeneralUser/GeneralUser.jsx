@@ -10,9 +10,6 @@ const GeneralUser = () => {
     const { user } = useContext(AuthInfo);
     const [pendingCompany, setPendingCompany] = useState(null);
 
-    // the headers for the jwt token
-    // const header = useAuthHeaders();
-    // console.log("the heasdr is", header);
 
     // fetch company data 
     const { data: companies = [], isLoading } = useQuery({
