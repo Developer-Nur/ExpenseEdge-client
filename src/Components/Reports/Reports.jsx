@@ -1,77 +1,70 @@
 import React, { useState, useEffect } from "react";
 import CountUp from 'react-countup';
+import { FaBuilding, FaTrophy, FaChartLine } from 'react-icons/fa';
 import 'tailwindcss/tailwind.css';
 
 const Reports = () => {
   const [successCount, setSuccessCount] = useState(0);
+  const [totalCompanies, setTotalCompanies] = useState(0);
+  const [successfulCompanies, setSuccessfulCompanies] = useState(0);
   const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-
+    // Simulate data fetching
     setTimeout(() => {
-      setSuccessCount(350);
+      setSuccessCount(350);  // Example for successful transactions
+      setTotalCompanies(150);  // Example for total companies
+      setSuccessfulCompanies(120);  // Example for companies that had success
       setDataFetched(true);
     }, 1500);
   }, []);
 
   return (
     <div className="p-10 pb-8 bg-gray-100">
-      <h1 className="text-3xl font-semibold text-center mb-8 text-[#2E236C]">Financial Overview</h1>
-
+      <h1 className="text-3xl font-semibold text-center mb-8 text-[#2E236C]">Expense Edge Overview</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        {/* <div className="bg-white shadow-md rounded-lg p-4 mb-6">
-          <h3 className="text-md font-semibold text-gray-700 mb-2">Income vs Expenses Progress</h3>
+        {/* Total Companies */}
+        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+          <FaBuilding className="text-4xl text-blue-500 mx-auto mb-3" />
+          <h2 className="text-lg font-semibold text-gray-700 mb-2">Total Companies</h2>
+          {dataFetched ? (
+            <CountUp className="text-4xl font-bold text-blue-500" end={totalCompanies} duration={2} />
+          ) : (
+            <div className="animate-pulse text-4xl font-bold text-gray-300">Loading...</div>
+          )}
+          <p className="text-gray-500 mt-1 text-sm">Companies on the platform</p>
+        </div>
 
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-gray-600 text-sm">Income</span>
-              <span className="text-blue-500 text-sm">$10,200</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: '75%' }}></div>
-            </div>
-          </div>
+        {/* Successful Companies */}
+        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+          <FaTrophy className="text-4xl text-green-500 mx-auto mb-3" />
+          <h2 className="text-lg font-semibold text-gray-700 mb-2">Successful Companies</h2>
+          {dataFetched ? (
+            <CountUp className="text-4xl font-bold text-green-500" end={successfulCompanies} duration={2} />
+          ) : (
+            <div className="animate-pulse text-4xl font-bold text-gray-300">Loading...</div>
+          )}
+          <p className="text-gray-500 mt-1 text-sm">Companies achieving success</p>
+        </div>
 
-          <div>
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-gray-600 text-sm">Expenses</span>
-              <span className="text-red-500 text-sm">$8,750</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div className="bg-red-500 h-2.5 rounded-full" style={{ width: '60%' }}></div>
-            </div>
-          </div>
-        </div> */}
-
-        <div className="bg-white shadow-md rounded-lg p-4 text-center">
+        {/* Success Counter */}
+        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+          <FaChartLine className="text-4xl text-purple-500 mx-auto mb-3" />
           <h2 className="text-lg font-semibold text-gray-700 mb-2">Success Counter</h2>
           {dataFetched ? (
-            <CountUp className="text-4xl font-bold text-green-500" end={successCount} duration={2} />
+            <CountUp className="text-4xl font-bold text-purple-500" end={successCount} duration={2} />
           ) : (
             <div className="animate-pulse text-4xl font-bold text-gray-300">Loading...</div>
           )}
           <p className="text-gray-500 mt-1 text-sm">Successful Transactions</p>
         </div>
-
-        <div className="bg-white shadow-md rounded-lg p-4 text-center">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2">Total Income</h2>
-          <p className="text-2xl font-bold text-blue-500">$10,200</p>
-          <p className="text-gray-500 mt-1 text-sm">This month</p>
-        </div>
-
-        <div className="bg-white shadow-md rounded-lg p-4 text-center">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2">Total Expenses</h2>
-          <p className="text-2xl font-bold text-red-500">$8,750</p>
-          <p className="text-gray-500 mt-1 text-sm">This month</p>
-        </div>
       </div>
-
-
     </div>
   );
 };
 
 export default Reports;
+
 
 
