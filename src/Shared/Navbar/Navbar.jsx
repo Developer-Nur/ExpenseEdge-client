@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { RiBarChart2Fill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
-import { AuthInfo } from '../../Provider/AuthProvider';
+import { AuthInfo } from '../../Provider/Authprovider';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import logo from '../../assets/LogoExpense.png'
 import { useQuery } from '@tanstack/react-query';

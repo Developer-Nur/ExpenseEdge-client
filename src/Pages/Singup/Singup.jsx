@@ -54,7 +54,7 @@ const Singup = () => {
                                 timer: 5000
                             });
                             reset()
-                            navigate('/dashboard')
+                            navigate('/dashboard/CompanyDashboard')
                         }
                     })
             })
@@ -111,7 +111,7 @@ const Singup = () => {
                                 timer: 5000
                             });
                             reset()
-                            navigate('/dashboard')
+                            navigate('/dashboard/GeneralUser')
                         }
                     })
             })

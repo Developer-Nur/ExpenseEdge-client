@@ -35,7 +35,7 @@ const Login = () => {
                     timer: 1500
                 });
                 // setLoader(false)
-                navigate('/dashboard')
+                navigate('/')
             })
             .catch(error => {
                 Swal.fire({
