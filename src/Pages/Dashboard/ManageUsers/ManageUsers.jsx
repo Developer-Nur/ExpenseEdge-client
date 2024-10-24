@@ -87,7 +87,7 @@ const ManageUsers = () => {
     const sortedUsers = users.sort((a, b) => (a.role === 'admin' ? -1 : 1));
 
     return (
-        <div>
+        <div className="overflow-x-auto">
             <table className="table">
                 {/* head */}
                 <thead>
@@ -105,14 +105,15 @@ const ManageUsers = () => {
                             <tr key={user._id}>
                                 <th>{idx + 1}</th>
                                 <th>{user?.email}</th>
-                                <th className={user?.role === 'admin' && 'font-extrabold text-green-500'}>
-                                    {user?.role}
+                                <th>
+                                    <span className={user?.role === 'admin' && ' text-gray-600 bg-green-200 p-2 rounded-full'}>{user?.role}</span>
                                 </th>
                                 <th>
                                     <button
                                         onClick={() => handleMakeAdmin(user)}
                                         disabled={user?.role === 'admin'}
-                                        className="hover:bg-[#246460] bg-[#1a4744] p-2 md:p-3 text-green-100">
+                                        className={`p-2 md:p-3 text-green-100 ${user?.role === 'admin' ? 'bg-[#2E236C] text-gray-400 cursor-not-allowed' : 'bg-[#2E236C] hover:bg-[#433D8B]'}`}
+                                    >
                                         Make Admin
                                     </button>
                                 </th>

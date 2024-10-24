@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FaAlignJustify, FaHome } from 'react-icons/fa';
+import { FaAlignJustify, FaHome, FaRegCalendarAlt } from 'react-icons/fa';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { AuthInfo } from '../Provider/AuthProvider';
+import { TbReportSearch } from "react-icons/tb";
+import { IoMdAddCircleOutline, IoMdBusiness } from "react-icons/io";
+import { GrOverview } from "react-icons/gr";
+import { GrMoney } from "react-icons/gr";
+import { MdDashboard } from "react-icons/md";
 import { FiLogOut } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 import axios from 'axios';  // Import axios
@@ -9,6 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../Shared/LoadingSpinner/LoadingSpinner';
 import "../index.css";
 import logo from '../../src/assets/LogoExpense.png'
+import { FaUsersGear } from 'react-icons/fa6';
 // import LoadingSpinner from '../shared/LoadingSpinner/LoadingSpinner';
 
 const DashboardLayout = () => {
@@ -89,7 +95,7 @@ const DashboardLayout = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content overflow-y-auto">
 
                 <label htmlFor="my-drawer-2" className="m-10 mt-6 mb-8 drawer-button lg:hidden">
                     <FaAlignJustify className="bg-gray-50 text-5xl p-3 ml-3" />
@@ -102,22 +108,22 @@ const DashboardLayout = () => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="space-y-3 lg:space-y-5 text-xl font-semibold p-4 md:p-9 md:w-80 min-h-full bg-[#2E236C] text-white">
-                    
-                    
 
-                 
-                 {/* Add Logo here */}
-                   <li className="flex justify-center mb-4">
-                        <img 
+
+
+
+                    {/* Add Logo here */}
+                    <li className="flex justify-center mb-4">
+                        <img
                             src={logo}  // Replace with your logo path
-                            alt="Logo" 
+                            alt="Logo"
                             className="w-24 h-auto"  // Adjust width and height as per your need
                         />
                     </li>
 
-                    
+
                     <li>
-                        <Link className="hover:bg-[#433D8B] flex gap-2 items-center p-2" to="/">
+                        <Link className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/">
                             <FaHome /> Home
                         </Link>
                     </li>
@@ -126,20 +132,20 @@ const DashboardLayout = () => {
                         // Menu for company dashboard
                         <nav className="mt-4 space-y-2">
 
-                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyDashboard">
-                                Company Dashboard
+                            <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyDashboard">
+                                <MdDashboard /> Company Dashboard
                             </NavLink>
-                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/AdvancedReports">
-                                Advanced Financial Reports
+                            <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/AdvancedReports">
+                                <TbReportSearch />Financial Reports
                             </NavLink>
-                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/financial-overview">
-                                Financial Overview
+                            <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/financial-overview">
+                                <GrOverview /> Financial Overview
                             </NavLink>
-                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/event-calendar">
-                                Event Calendar
+                            <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/event-calendar">
+                                <FaRegCalendarAlt /> Event Calendar
                             </NavLink>
-                            <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/budget-management">
-                                Budget Management
+                            <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/budget-management">
+                                <GrMoney /> Budget Management
                             </NavLink>
                         </nav>
                     ) : userData === 'user' ? (
@@ -147,23 +153,23 @@ const DashboardLayout = () => {
                         <nav className="mt-4 space-y-2">
                             {
                                 role !== 'admin' && righter === 'approved' ? (
-                                    <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyOverview">
-                                        Company Overview
+                                    <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/CompanyOverview">
+                                        <GrOverview /> Company Overview
                                     </NavLink>
                                 ) : role !== 'admin' && righter !== 'approved' ? (
-                                    <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
-                                        Add to a company
+                                    <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/GeneralUser">
+                                        <IoMdAddCircleOutline /> Add to a Company
                                     </NavLink>
                                 ) : null
                             }
                             {
                                 role === 'admin' && (
                                     <>
-                                        <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageUsers">
-                                            Manage Users
+                                        <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageUsers">
+                                        <FaUsersGear /> Manage Users
                                         </NavLink>
-                                        <NavLink className="uppercase text-lg text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageCompany">
-                                            Manage Company
+                                        <NavLink className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md" to="/dashboard/ManageCompany">
+                                        <IoMdBusiness /> Manage Company
                                         </NavLink>
                                     </>
                                 )
@@ -172,7 +178,7 @@ const DashboardLayout = () => {
 
                     ) : null}
 
-                    <button onClick={userLogout} className="flex items-center justify-start gap-3 button mt-20 theme-color px-2 py-2 rounded-lg">
+                    <button onClick={userLogout} className="uppercase text-[17px] text-white hover:text-[#433D8B] flex items-center gap-2 py-2 px-4 hover:bg-white rounded-md">
                         Logout
                         <FiLogOut />
                     </button>

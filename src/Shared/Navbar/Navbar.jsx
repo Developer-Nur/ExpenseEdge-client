@@ -104,8 +104,7 @@ const Navbar = () => {
                             {link}
                         </ul>
                     </div>
-                    {/* <Link className="md:text-4xl lg:text-5xl text-2xl font-extrabold flex items-center gap-2 text-[#6A9C89]"><RiBarChart2Fill className='text-3xl md:text-5xl lg:text-6xl text-[#16423C]' /> ExpenseEdge</Link> */}
-                    <img className='h-[60px] w-auto ml-4' src={logo} alt="Logo" /> 
+                    <Link to={'/'}><img className='h-[60px] w-auto ml-4' src={logo} alt="Logo" /></Link> 
                 </div>
 
                 <div className="navbar-end space-x-14">

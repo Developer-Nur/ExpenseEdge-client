@@ -9,7 +9,7 @@ const LoadingSpinner = ({ smallHeight }) => {
         justify-center 
         items-center `}
         >
-            <ImSpinner10  className="animate-spin" size={100} color='#16423C' />
+            <ImSpinner10  className="animate-spin" size={100} color='#433D8B' />
         </div>
     );
 };
