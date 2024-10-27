@@ -39,7 +39,7 @@ const Footer = () => {
                 </nav>
 
                 {/* Newsletter and Social Media */}
-                <div className="md:place-self-center md:justify-self-end">
+                <div className="col-span-2 md:col-span-1 md:place-self-center md:justify-self-end">
                     <form onSubmit={handleSubscribe}>
                         <h6 className="footer-title">Newsletter</h6>
                         <fieldset className="form-control w-80">
