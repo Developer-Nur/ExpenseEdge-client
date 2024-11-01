@@ -36,42 +36,40 @@ const ReportPage = () => {
         if (!loader && user?.email) {
             axios.get(`${import.meta.env.VITE_SERVER_URL}/company-info/${user.email}`)
                 .then(({ data }) => {
-                    console.log(data);
                     setBalanceSheetData(data.data.balanceData)
                     setCashFlowData(data.data.balanceData)
                     setProfitLossData(data.data.incomeExpense)
-                    console.log(data);
-                })
+                });
 
             // Simulate data fetching here. Ensure it's an array
             if (!Array.isArray(balanceSheetData)) {
                 setBalanceSheetData([]); // Handle invalid data
             }
         }
-    }, [ filters, user]);
+    }, [filters, user]);
 
     if (loader) {
         return <p>Loading...</p>;
     }
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <h1 className="text-3xl font-bold text-center mb-6">Advanced Financial Reports</h1>
+        <div className="min-h-screen bg-gray-100 p-4 md:p-6">
+            <h1 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6">Advanced Financial Reports</h1>
             <FilterBar setFilters={setFilters} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <div className="bg-white shadow-lg rounded-lg p-4 col-span-2">
-                    <h2 className="text-xl font-semibold mb-4">Profit & Loss</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+                <div className="bg-white shadow-lg rounded-lg p-4 md:p-6 col-span-1 lg:col-span-2">
+                    <h2 className="text-lg md:text-xl font-semibold mb-4">Profit & Loss</h2>
                     <ProfitLossChart data={profitLossData} />
                 </div>
-                <div className="bg-white shadow-lg rounded-lg p-4">
-                    <h2 className="text-xl font-semibold mb-4">Balance Sheet</h2>
+                <div className="bg-white shadow-lg rounded-lg p-4 md:p-6">
+                    <h2 className="text-lg md:text-xl font-semibold mb-4">Balance Sheet</h2>
                     <BalanceSheetChart data={balanceSheetData} />
                 </div>
-                <div className="bg-white shadow-lg rounded-lg p-4">
-                    <h2 className="text-xl font-semibold mb-4">Cash Flow</h2>
+                <div className="bg-white shadow-lg rounded-lg p-4 md:p-6">
+                    <h2 className="text-lg md:text-xl font-semibold mb-4">Cash Flow</h2>
                     <CashFlowChart data={cashFlowData} />
                 </div>
             </div>
-            <div className="mt-6 text-center">
+            <div className="mt-4 md:mt-6 text-center">
                 <ExportButton data={[profitLossData, balanceSheetData, cashFlowData]} />
             </div>
         </div>
@@ -79,6 +77,7 @@ const ReportPage = () => {
 };
 
 export default ReportPage;
+
 
 
 
