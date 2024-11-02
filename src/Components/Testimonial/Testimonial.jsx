@@ -6,7 +6,7 @@ const Testimonial = () => {
 
     useEffect(() => {
         // Fetch the testimonial JSON data from the public folder
-        fetch('http://localhost:5000/testimonials')
+        fetch('/testimonial.json')
             .then((response) => response.json())
             .then((data) => {
                 setTestimonials(data);

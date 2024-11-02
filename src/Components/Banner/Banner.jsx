@@ -7,9 +7,9 @@ import 'swiper/css/navigation';
 
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-import revenueImage1 from '../../assets/revenue-image2.png';
-import revenueImage2 from '../../assets/Investing 1.png';
-import revenueImage3 from '../../assets/rag-doll-pointing-with-stick-one-bar-graph.png';
+import revenueImage1 from '../../assets/newRevenue3.jpg';
+import revenueImage2 from '../../assets/newRevenue1.jpg';
+import revenueImage3 from '../../assets/newRevenue2.jpg';
 import { AuthInfo } from '../../Provider/Authprovider'; // Import the context
 
 import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router
