@@ -24,7 +24,7 @@ const Banner = () => {
     };
 
     const slideStyle = {
-        position: 'relative', // Set position to relative
+        position: 'relative',
         height: "100%",
         display: "flex",
         justifyContent: "center",
@@ -32,12 +32,13 @@ const Banner = () => {
     };
 
     const imageStyle = {
-        position: 'absolute', // Position image absolutely
+        position: 'absolute',
         top: 0,
         left: 0,
         width: "100%",
         height: "100%",
-        objectFit: "cover",
+        objectFit: "cover", // Maintains aspect ratio and covers the area
+        maxHeight: "100vh", // Limits height to prevent overflow on small screens
     };
 
     const overlayStyle = {
@@ -46,21 +47,21 @@ const Banner = () => {
         left: 0,
         width: "100%",
         height: "100%",
-        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2))', // Gradient overlay
+        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2))',
         zIndex: 1,
     };
 
     const textContainerStyle = {
-        position: 'relative', // Keep the text on top of the image
-        zIndex: 2, // Ensure text is above the overlay
+        position: 'relative',
+        zIndex: 2,
         textAlign: "center",
         padding: "20px",
-        color: "white", // Change text color for better visibility
+        color: "white",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center", // Center vertically
-        alignItems: "center", // Center horizontally
-        height: "100%", // Make the container full height
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
     };
 
     const buttonStyle = {
@@ -73,16 +74,13 @@ const Banner = () => {
         fontSize: "16px",
         transition: "background-color 0.3s",
         maxWidth: "200px",
-        margin: "20px auto 0", // Set margin for top and bottom
+        marginTop: "20px", // Ensure space above the button
     };
 
-    // Handle button click
     const handleButtonClick = () => {
         if (user) {
-            // If the user is logged in, navigate to the dashboard
             navigate('/dashboard/CompanyDashboard');
         } else {
-            // If the user is not logged in, navigate to the login page
             navigate('/Login');
         }
     };
@@ -107,44 +105,68 @@ const Banner = () => {
             >
                 <SwiperSlide style={slideStyle}>
                     <img className='shadow-lg' src={revenueImage1} alt="Revenue Illustration 1" style={imageStyle} />
-                    <div style={overlayStyle}></div> {/* Gradient overlay */}
+                    <div style={overlayStyle}></div>
                     <div style={textContainerStyle}>
                         <h2 className='text-4xl md:text-6xl font-bold' style={{ color: "white" }}>
-                            Accounting Platform for <br />Growing Businesses
+                            Accounting Platform for Growing Businesses
                         </h2>
                         <p className='text-base md:text-lg mt-4' style={{ color: "white" }}>
-                            Our platform streamlines your accounting processes, making it easier<br /> for you to manage your finances efficiently.
+                            Our platform streamlines your accounting processes, making it easier for you to manage your finances efficiently.
                         </p>
-                        <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Get Started</button>
+                        <button style={buttonStyle} onClick={handleButtonClick}>Get Started</button>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
                     <img className='shadow-lg' src={revenueImage2} alt="Revenue Illustration 2" style={imageStyle} />
-                    <div style={overlayStyle}></div> {/* Gradient overlay */}
+                    <div style={overlayStyle}></div>
                     <div style={textContainerStyle}>
                         <h2 className='text-4xl md:text-6xl font-bold' style={{ color: "white" }}>
-                            Take Control of Your <br /> Financial Future
+                            Take Control of Your Financial Future
                         </h2>
                         <p className='text-base md:text-lg mt-4' style={{ color: "white" }}>
-                            Empower your business with tools that help you track spending, analyze<br /> cash flow, and forecast profits with confidence.
+                            Empower your business with tools that help you track spending, analyze cash flow, and forecast profits with confidence.
                         </p>
-                        <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Learn More</button>
+                        <button style={buttonStyle} onClick={handleButtonClick}>Learn More</button>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
                     <img className='shadow-lg' src={revenueImage3} alt="Revenue Illustration 3" style={imageStyle} />
-                    <div style={overlayStyle}></div> {/* Gradient overlay */}
+                    <div style={overlayStyle}></div>
                     <div style={textContainerStyle}>
                         <h2 className='text-4xl md:text-6xl font-bold' style={{ color: "white" }}>
-                            Simplify Your Financial<br /> Management
+                            Simplify Your Financial Management
                         </h2>
                         <p className='text-base md:text-lg mt-4' style={{ color: "white" }}>
-                            We help businesses stand out in crowded markets. When customers have a<br /> positive experience with a brand, they are more likely to remember it.
+                            We help businesses stand out in crowded markets. When customers have a positive experience with a brand, they are more likely to remember it.
                         </p>
-                        <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Discover More</button>
+                        <button style={buttonStyle} onClick={handleButtonClick}>Discover More</button>
                     </div>
                 </SwiperSlide>
             </Swiper>
+
+            {/* Responsive CSS styles */}
+            <style>{`
+                @media (max-width: 768px) {
+                    h2 {
+                        font-size: 2.5rem; // Adjusts for smaller screens
+                    }
+                    p {
+                        font-size: 1rem; // Adjusts for smaller screens
+                    }
+                    button {
+                        font-size: 14px; // Adjusts for button font size
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    h2 {
+                        font-size: 2rem; // Further adjusts for extra small screens
+                    }
+                    p {
+                        font-size: 0.9rem; // Further adjusts for extra small screens
+                    }
+                }
+            `}</style>
         </div>
     );
 };
