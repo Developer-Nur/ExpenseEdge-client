@@ -109,10 +109,10 @@ const Banner = () => {
                     <img className='shadow-lg' src={revenueImage1} alt="Revenue Illustration 1" style={imageStyle} />
                     <div style={overlayStyle}></div> {/* Gradient overlay */}
                     <div style={textContainerStyle}>
-                        <h2 className='text-2xl md:text-4xl font-bold'>
+                        <h2 className='text-4xl md:text-6xl font-bold' style={{ color: "white" }}>
                             Accounting Platform for <br />Growing Businesses
                         </h2>
-                        <p className='text-base md:text-lg mt-4'>
+                        <p className='text-base md:text-lg mt-4' style={{ color: "white" }}>
                             Our platform streamlines your accounting processes, making it easier<br /> for you to manage your finances efficiently.
                         </p>
                         <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Get Started</button>
@@ -122,10 +122,10 @@ const Banner = () => {
                     <img className='shadow-lg' src={revenueImage2} alt="Revenue Illustration 2" style={imageStyle} />
                     <div style={overlayStyle}></div> {/* Gradient overlay */}
                     <div style={textContainerStyle}>
-                        <h2 className='text-2xl md:text-4xl font-bold'>
+                        <h2 className='text-4xl md:text-6xl font-bold' style={{ color: "white" }}>
                             Take Control of Your <br /> Financial Future
                         </h2>
-                        <p className='text-base md:text-lg mt-4'>
+                        <p className='text-base md:text-lg mt-4' style={{ color: "white" }}>
                             Empower your business with tools that help you track spending, analyze<br /> cash flow, and forecast profits with confidence.
                         </p>
                         <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Learn More</button>
@@ -135,10 +135,10 @@ const Banner = () => {
                     <img className='shadow-lg' src={revenueImage3} alt="Revenue Illustration 3" style={imageStyle} />
                     <div style={overlayStyle}></div> {/* Gradient overlay */}
                     <div style={textContainerStyle}>
-                        <h2 className='text-2xl md:text-4xl font-bold'>
+                        <h2 className='text-4xl md:text-6xl font-bold' style={{ color: "white" }}>
                             Simplify Your Financial<br /> Management
                         </h2>
-                        <p className='text-base md:text-lg mt-4'>
+                        <p className='text-base md:text-lg mt-4' style={{ color: "white" }}>
                             We help businesses stand out in crowded markets. When customers have a<br /> positive experience with a brand, they are more likely to remember it.
                         </p>
                         <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Discover More</button>
