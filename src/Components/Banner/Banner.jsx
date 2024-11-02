@@ -38,12 +38,21 @@ const Banner = () => {
         width: "100%",
         height: "100%",
         objectFit: "cover",
-        filter: "brightness(0.5)", // Dim the image to make text more visible
+    };
+
+    const overlayStyle = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2))', // Gradient overlay
+        zIndex: 1,
     };
 
     const textContainerStyle = {
         position: 'relative', // Keep the text on top of the image
-        zIndex: 1, // Ensure text is above the image
+        zIndex: 2, // Ensure text is above the overlay
         textAlign: "center",
         padding: "20px",
         color: "white", // Change text color for better visibility
@@ -94,6 +103,7 @@ const Banner = () => {
             >
                 <SwiperSlide style={slideStyle}>
                     <img className='shadow-lg' src={revenueImage1} alt="Revenue Illustration 1" style={imageStyle} />
+                    <div style={overlayStyle}></div> {/* Gradient overlay */}
                     <div style={textContainerStyle}>
                         <h2 className='text-2xl md:text-4xl font-bold'>
                             Accounting Platform for <br />Growing Businesses
@@ -106,6 +116,7 @@ const Banner = () => {
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
                     <img className='shadow-lg' src={revenueImage2} alt="Revenue Illustration 2" style={imageStyle} />
+                    <div style={overlayStyle}></div> {/* Gradient overlay */}
                     <div style={textContainerStyle}>
                         <h2 className='text-2xl md:text-4xl font-bold'>
                             Take Control of Your <br /> Financial Future
@@ -118,6 +129,7 @@ const Banner = () => {
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
                     <img className='shadow-lg' src={revenueImage3} alt="Revenue Illustration 3" style={imageStyle} />
+                    <div style={overlayStyle}></div> {/* Gradient overlay */}
                     <div style={textContainerStyle}>
                         <h2 className='text-2xl md:text-4xl font-bold'>
                             Simplify Your Financial<br /> Management
