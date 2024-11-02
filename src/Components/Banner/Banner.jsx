@@ -56,10 +56,14 @@ const Banner = () => {
         textAlign: "center",
         padding: "20px",
         color: "white", // Change text color for better visibility
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center", // Center vertically
+        alignItems: "center", // Center horizontally
+        height: "100%", // Make the container full height
     };
 
     const buttonStyle = {
-        marginTop: "20px",
         padding: "10px 20px",
         backgroundColor: "#2E236C",
         color: "white",
@@ -69,7 +73,7 @@ const Banner = () => {
         fontSize: "16px",
         transition: "background-color 0.3s",
         maxWidth: "200px",
-        margin: "0 auto",
+        margin: "20px auto 0", // Set margin for top and bottom
     };
 
     // Handle button click
@@ -111,7 +115,7 @@ const Banner = () => {
                         <p className='text-base md:text-lg mt-4'>
                             Our platform streamlines your accounting processes, making it easier<br /> for you to manage your finances efficiently.
                         </p>
-                        <button style={buttonStyle} onClick={handleButtonClick}>Get Started</button>
+                        <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Get Started</button>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
@@ -124,7 +128,7 @@ const Banner = () => {
                         <p className='text-base md:text-lg mt-4'>
                             Empower your business with tools that help you track spending, analyze<br /> cash flow, and forecast profits with confidence.
                         </p>
-                        <button style={buttonStyle} onClick={handleButtonClick}>Learn More</button>
+                        <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Learn More</button>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
@@ -137,7 +141,7 @@ const Banner = () => {
                         <p className='text-base md:text-lg mt-4'>
                             We help businesses stand out in crowded markets. When customers have a<br /> positive experience with a brand, they are more likely to remember it.
                         </p>
-                        <button style={buttonStyle} onClick={handleButtonClick}>Discover More</button>
+                        <button style={{ ...buttonStyle, marginTop: "40px" }} onClick={handleButtonClick}>Discover More</button>
                     </div>
                 </SwiperSlide>
             </Swiper>
