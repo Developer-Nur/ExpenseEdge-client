@@ -24,31 +24,33 @@ const Banner = () => {
     };
 
     const slideStyle = {
+        position: 'relative', // Set position to relative
+        height: "100%",
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100%",
-        width: "100%",
-        padding: "20px",
     };
 
     const imageStyle = {
-        maxWidth: "100%",
-        maxHeight: "50%",
+        position: 'absolute', // Position image absolutely
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
         objectFit: "cover",
-        borderRadius: "10px",
-        marginBottom: "20px",
+        filter: "brightness(0.5)", // Dim the image to make text more visible
     };
 
     const textContainerStyle = {
-        width: "100%",
-        padding: "10px",
+        position: 'relative', // Keep the text on top of the image
+        zIndex: 1, // Ensure text is above the image
         textAlign: "center",
+        padding: "20px",
+        color: "white", // Change text color for better visibility
     };
 
     const buttonStyle = {
-        marginTop: "40px",
+        marginTop: "20px",
         padding: "10px 20px",
         backgroundColor: "#2E236C",
         color: "white",
@@ -91,36 +93,36 @@ const Banner = () => {
                 slidesPerView={1}
             >
                 <SwiperSlide style={slideStyle}>
-                    <img className='shadow-black' src={revenueImage1} alt="Revenue Illustration 1" style={imageStyle} />
+                    <img className='shadow-lg' src={revenueImage1} alt="Revenue Illustration 1" style={imageStyle} />
                     <div style={textContainerStyle}>
-                        <h2 className='text-2xl md:text-4xl font-bold text-black'>
+                        <h2 className='text-2xl md:text-4xl font-bold'>
                             Accounting Platform for <br />Growing Businesses
                         </h2>
-                        <p className='text-base md:text-lg text-black mt-4'>
+                        <p className='text-base md:text-lg mt-4'>
                             Our platform streamlines your accounting processes, making it easier<br /> for you to manage your finances efficiently.
                         </p>
                         <button style={buttonStyle} onClick={handleButtonClick}>Get Started</button>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
-                    <img src={revenueImage2} alt="Revenue Illustration 2" style={imageStyle} />
+                    <img className='shadow-lg' src={revenueImage2} alt="Revenue Illustration 2" style={imageStyle} />
                     <div style={textContainerStyle}>
-                        <h2 className='text-2xl md:text-4xl font-bold text-black'>
+                        <h2 className='text-2xl md:text-4xl font-bold'>
                             Take Control of Your <br /> Financial Future
                         </h2>
-                        <p className='text-base md:text-lg text-black mt-4'>
+                        <p className='text-base md:text-lg mt-4'>
                             Empower your business with tools that help you track spending, analyze<br /> cash flow, and forecast profits with confidence.
                         </p>
                         <button style={buttonStyle} onClick={handleButtonClick}>Learn More</button>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={slideStyle}>
-                    <img src={revenueImage3} alt="Revenue Illustration 3" style={imageStyle} />
+                    <img className='shadow-lg' src={revenueImage3} alt="Revenue Illustration 3" style={imageStyle} />
                     <div style={textContainerStyle}>
-                        <h2 className='text-2xl md:text-4xl font-bold text-black'>
+                        <h2 className='text-2xl md:text-4xl font-bold'>
                             Simplify Your Financial<br /> Management
                         </h2>
-                        <p className='text-base md:text-lg text-black mt-4'>
+                        <p className='text-base md:text-lg mt-4'>
                             We help businesses stand out in crowded markets. When customers have a<br /> positive experience with a brand, they are more likely to remember it.
                         </p>
                         <button style={buttonStyle} onClick={handleButtonClick}>Discover More</button>
