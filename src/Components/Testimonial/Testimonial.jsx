@@ -6,7 +6,7 @@ const Testimonial = () => {
 
     useEffect(() => {
         // Fetch the testimonial JSON data from the public folder
-        fetch('/testimonial.json')
+        fetch(`${import.meta.env.VITE_SERVER_URL}/testimonials`)
             .then((response) => response.json())
             .then((data) => {
                 setTestimonials(data);
